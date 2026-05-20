@@ -469,7 +469,6 @@ def activity():
 
     return result
 
-client = razorpay_client
 
 # Verify Payment and Reward
 @app.route("/api/verify-payment", methods=["POST"])
