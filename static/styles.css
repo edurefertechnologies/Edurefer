@@ -584,33 +584,44 @@ footer a{
     transform: rotateY(180deg);
 }
 
+
+/* FRONT + BACK SAME SIZE */
+
 .card-front,
 .card-back{
     position: absolute;
     width: 100%;
     height: 100%;
+
     backface-visibility: hidden;
 
     border-radius: 25px;
     overflow: hidden;
-    background: #fff;
+
+    background: white;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+
+    padding: 25px;
 }
 
-.card-front img{
+/* BOTH IMAGES SAME */
+
+.card-front img,
+.card-back img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
+
+/* BACK ROTATION */
 
 .card-back{
     transform: rotateY(180deg);
-    padding: 20px;
 }
 
 .card-back img{
