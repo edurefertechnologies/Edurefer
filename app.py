@@ -9,6 +9,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 import razorpay
 import re
 import smtplib
+from flask import send_from_directory
 
 def is_valid_username(username):
     regex = r'^[a-zA-Z0-9_]{3,20}$'
@@ -135,6 +136,7 @@ def serve_pages(path):
         "login.html",
         "register.html",
         "dashboard.html",
+        "about.html",
         "wallet.html",
         "refer.html",
         "cart.html",
@@ -146,7 +148,7 @@ def serve_pages(path):
     if path not in allowed:
         return {"error":"Not found"}, 404
 
-    return flask.send_from_directory(
+    return flask.flask.send_from_directory(
         "templates",
         path
     )
@@ -250,6 +252,10 @@ def register():
         }, 500
 
     return {"ok": True}
+
+@app.route("/about.html")
+def about_page():
+    return flask.send_from_directory(".", "about.html")
 
 # Razorpay Order Creation
 @app.route("/api/create-order", methods=["POST"])
