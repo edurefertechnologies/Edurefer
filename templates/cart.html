@@ -133,7 +133,7 @@
       <a href="about.html">About</a>
       <a href="refer.html"> Refer</a>
       <a href="wallet.html">Reward</a>
-      <a href="cart.html" class="cart-link">
+      <a href="cart.html" class="cart-link" class="active">
           🛒
       <span class="cart-badge">
           0
@@ -163,6 +163,7 @@
 
       <button class="btn" onclick="clearCart()">Clear</button>
       <button class="btn" onclick="checkout()">Checkout</button>
+      <button class="btn-outline" onclick="window.location='dashboard.html#products'">  Continue Shopping</button>
     </div>
   </div>
 
@@ -231,7 +232,16 @@ function renderCart(){
   container.innerHTML = "";
 
   if(cart.length === 0){
-    container.innerHTML = "<h3>Your cart is empty!! </h3>";
+    container.innerHTML = `
+      <div class="empty-cart">
+        <h2>🛒 Your cart is empty</h2>
+        <p>Add products and start earning with EduRefer.</p>
+
+        <button class="btn" onclick="window.location='index.html'">
+          Browse Products
+        </button>
+      </div>
+      `;
     document.getElementById("cartTotal").innerText = 0;
     return;
   }

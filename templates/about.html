@@ -202,5 +202,26 @@ content="width=device-width, initial-scale=1.0">
 
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // ✅ USERNAME GET
+            const username = localStorage.getItem("username") || "User";
+
+            // ✅ GREETING
+            let greet = "Hello";
+            const hour = new Date().getHours();
+
+            if(hour < 12) greet = "Good Morning";
+            else if(hour < 18) greet = "Good Afternoon";
+            else greet = "Good Evening";
+
+            const greetEl = document.getElementById("userGreeting");
+            if(greetEl){
+                greetEl.innerText = `👋 ${greet}, ${username}`;
+            }
+
+            });
+    </script>
     </body>
     </html>
