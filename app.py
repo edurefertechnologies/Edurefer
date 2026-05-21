@@ -148,7 +148,7 @@ def serve_pages(path):
     if path not in allowed:
         return {"error":"Not found"}, 404
 
-    return flask.flask.send_from_directory(
+    return send_from_directory(
         "templates",
         path
     )
