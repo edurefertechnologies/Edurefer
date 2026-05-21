@@ -1,7 +1,8 @@
 import os
 import secrets
-from datetime import datetime
 import flask
+from datetime import datetime
+from flask import send_from_directory
 import flask_cors
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, ForeignKey
@@ -9,7 +10,6 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 import razorpay
 import re
 import smtplib
-from flask import send_from_directory
 
 def is_valid_username(username):
     regex = r'^[a-zA-Z0-9_]{3,20}$'
