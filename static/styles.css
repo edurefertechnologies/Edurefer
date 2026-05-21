@@ -1,7 +1,3 @@
-html{
-    scroll-behavior: smooth;
-}
-
 *{
     margin:0;
     padding:0;
@@ -104,7 +100,7 @@ body{
 
     height:92px;
 
-    max-width:auto;
+    width:auto;
 
     object-fit:contain;
 
@@ -543,7 +539,8 @@ footer a{
 
 .about-text h2{
 
-    font-size:clamp(2rem,4vw,3rem);
+    font-size:
+    clamp(2rem,4vw,3rem);
 
     margin-bottom:24px;
 
@@ -562,98 +559,50 @@ footer a{
 }
 
 /* =========================
-   ABOUT IMAGE FLIP CARD
+   ABOUT IMAGE SIMPLE STYLE
 ========================= */
 
 .about-image-card{
     width: 500px;
     height: 360px;
-    perspective: 1000px;
-    margin: auto;
-}
 
-.about-image-inner{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 1s;
-    transform-style: preserve-3d;
-}
-
-.about-image-card:hover .about-image-inner{
-    transform: rotateY(180deg);
-}
-
-
-/* FRONT + BACK SAME SIZE */
-
-.card-front,
-.card-back{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-    backface-visibility: hidden;
-
-    border-radius: 25px;
+    border-radius: 30px;
     overflow: hidden;
 
     background: white;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     box-shadow: 0 15px 35px rgba(0,0,0,0.08);
 
-    padding: 25px;
+    transition: all 0.4s ease;
+
+    margin: auto;
 }
 
-/* BOTH IMAGES SAME */
+.about-image-card:hover{
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
 
-.card-front img,
-.card-back img{
+.about-image-card img{
     width: 100%;
     height: 100%;
     object-fit: contain;
+
+    transition: transform 0.5s ease;
 }
 
-/* BACK ROTATION */
-
-.card-back{
-    transform: rotateY(180deg);
+.about-image-card:hover img{
+    transform: scale(1.05);
 }
 
-.card-back img{
-    width: 80%;
-    object-fit: contain;
-}
-
-/* ===== MOBILE ===== */
+/* MOBILE */
 
 @media(max-width:768px){
-
-    .about-content{
-        flex-direction: column;
-    }
-
-    .about-text{
-        text-align: center;
-    }
 
     .about-image-card{
         width: 100%;
         max-width: 320px;
         height: 220px;
-    }
-
-    .card-front img{
-        object-fit: contain;
-        padding: 10px;
-    }
-
-    .card-back img{
-        width: 75%;
     }
 
 }
