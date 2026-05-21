@@ -114,6 +114,7 @@ app = flask.Flask(
     template_folder="templates",
     static_folder="static"
 )
+
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "secret")
 flask_cors.CORS(app)
 
