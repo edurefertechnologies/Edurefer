@@ -130,6 +130,7 @@
     <div class="nav">
       <a href="index.html">Home</a>
       <a href="dashboard.html">Dashboard</a>
+      <a href="about.html">About</a>
       <a href="refer.html"> Refer</a>
       <a href="wallet.html">Reward</a>
       <a href="cart.html" class="cart-link">
@@ -282,6 +283,31 @@ function clearCart(){
   renderCart();
 }
 
+function updateCartCount(){
+
+      const cart =
+      JSON.parse(
+          localStorage.getItem("edurefer_cart")
+      ) || [];
+
+      let total = 0;
+
+      cart.forEach(item => {
+
+          total += item.quantity || 1;
+
+      });
+
+      const badge =
+      document.querySelector(".cart-badge");
+
+      if(badge){
+
+          badge.innerText = total;
+
+      }
+  }
+
 async function checkout(){
   let cart = getCart();
 
@@ -366,6 +392,7 @@ function logout(){
   window.location.href = "login.html";
 }
 
+updateCartCount();
 renderCart();
 </script>
 
