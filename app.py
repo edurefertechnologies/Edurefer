@@ -253,10 +253,6 @@ def register():
 
     return {"ok": True}
 
-@app.route("/about.html")
-def about_page():
-    return flask.send_from_directory(".", "about.html")
-
 # Razorpay Order Creation
 @app.route("/api/create-order", methods=["POST"])
 def create_order():
