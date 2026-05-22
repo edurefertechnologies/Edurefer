@@ -29,7 +29,7 @@
     .refer-card {
       max-width: 800px;
       margin: 20px auto;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       padding: 25px;
       border-radius: 16px;
       backdrop-filter: blur(10px);
@@ -63,12 +63,12 @@
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
     }
 
     .step {
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       padding: 15px;
       border-radius: 10px;
       text-align: center;
@@ -90,16 +90,16 @@
       <a href="wallet.html">Reward</a>
       <a href="cart.html" class="cart-link">
         🛒
-      <span class="cart-badge">
-        0
-      </span>
+        <span class="cart-badge">
+          0
+        </span>
       </a>
       <a href="#" onclick="logout()">Logout</a>
       <span id="userGreeting" class="greeting"></span>
     </div>
   </div>
 </header>
-<main class ="container">
+<main class="container">
   <section class="refer-hero">
     <h1>Invite your Friends. Earn Money 💸</h1>
     <p>Earn ₹300 per referral. Withdraw after ₹600.</p>
@@ -134,107 +134,108 @@
 
 <script>
 
-// LOAD DATA
-async function load(){
-  const token = localStorage.getItem("edurefer_token");
+  // LOAD DATA
+  async function load() {
+    const token = localStorage.getItem("edurefer_token");
 
-  if(!token){
-    window.location="login.html";
-    return;
+    if (!token) {
+      window.location = "login.html";
+      return;
+    }
+
+    const res = await fetch("/api/me", {
+      headers: { Authorization: token }
+    });
   }
 
-  const res = await fetch("/api/me",{
-    headers:{Authorization:token}
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    // ✅ USERNAME GET
+    const username = localStorage.getItem("username") || "User";
+
+    // ✅ GREETING
+    let greet = "Hello";
+    const hour = new Date().getHours();
+
+    if (hour < 12) greet = "Good Morning";
+    else if (hour < 18) greet = "Good Afternoon";
+    else greet = "Good Evening";
+
+    const greetEl = document.getElementById("userGreeting");
+    if (greetEl) {
+      greetEl.innerText = `👋 ${greet}, ${username}`;
+    }
+
+    // ✅ REFERRAL LINK
+    const refLinkInput = document.getElementById("refLink");
+
+    if (username) {
+      const link = `${window.location.origin}/?ref=${username}`;
+      refLinkInput.value = link;
+    } else {
+      refLinkInput.value = "Login to get your link";
+    }
+
+    // ✅ CAPTURE REFERRAL FROM URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const refUser = urlParams.get("ref");
+
+    if (refUser) {
+      localStorage.setItem("referrer", refUser);
+    }
+
   });
-}
 
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  // ✅ USERNAME GET
-  const username = localStorage.getItem("username") || "User";
-
-  // ✅ GREETING
-  let greet = "Hello";
-  const hour = new Date().getHours();
-
-  if(hour < 12) greet = "Good Morning";
-  else if(hour < 18) greet = "Good Afternoon";
-  else greet = "Good Evening";
-
-  const greetEl = document.getElementById("userGreeting");
-  if(greetEl){
-    greetEl.innerText = `👋 ${greet}, ${username}`;
+  function copyLink() {
+    const input = document.getElementById("refLink");
+    input.select();
+    document.execCommand("copy");
+    alert("Link copied 🚀");
   }
 
-  // ✅ REFERRAL LINK
-  const refLinkInput = document.getElementById("refLink");
-
-  if(username){
-    const link = `${window.location.origin}/?ref=${username}`;
-    refLinkInput.value = link;
+  const token = localStorage.getItem("edurefer_token");
+  if (token) {
+    document.getElementById("nav-login").style.display = "none";
+    document.getElementById("nav-logout").style.display = "inline-block";
   } else {
-    refLinkInput.value = "Login to get your link";
+    document.getElementById("nav-login").style.display = "inline-block";
+    document.getElementById("nav-logout").style.display = "none";
   }
 
-  // ✅ CAPTURE REFERRAL FROM URL
+
+  // 🔥 CAPTURE REFERRAL FROM URL
   const urlParams = new URLSearchParams(window.location.search);
   const refUser = urlParams.get("ref");
 
-  if(refUser){
+  if (refUser) {
     localStorage.setItem("referrer", refUser);
   }
 
-});
+  const path = window.location.pathname;
 
-function copyLink() {
-  const input = document.getElementById("refLink");
-  input.select();
-  document.execCommand("copy");
-  alert("Link copied 🚀");
-}
+  if (path.includes("index")) document.getElementById("nav-home")?.classList.add("active");
+  if (path.includes("dashboard")) document.getElementById("nav-dashboard")?.classList.add("active");
+  if (path.includes("wallet")) document.getElementById("nav-wallet")?.classList.add("active");
+  if (path.includes("refer")) document.getElementById("nav-refer")?.classList.add("active");
+  if (path.includes("cart")) document.getElementById("nav-cart")?.classList.add("active");
 
-const token = localStorage.getItem("edurefer_token");
-  if(token){
-    document.getElementById("nav-login").style.display="none";
-    document.getElementById("nav-logout").style.display="inline-block";
-  }else{
-    document.getElementById("nav-login").style.display="inline-block";
-    document.getElementById("nav-logout").style.display="none";
+  // 🔥 WHATSAPP SHARE
+  function shareWhatsApp() {
+    const link = document.getElementById("refLink").value;
+
+    const message = `🚀 Join EduRefer & Earn Money!\nUse my referral link:\n${link}`;
+
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
   }
 
-  
-// 🔥 CAPTURE REFERRAL FROM URL
-const urlParams = new URLSearchParams(window.location.search);
-const refUser = urlParams.get("ref");
-
-if (refUser) {
-  localStorage.setItem("referrer", refUser);
-}
-
-const path = window.location.pathname;
-
-if(path.includes("index")) document.getElementById("nav-home")?.classList.add("active");
-if(path.includes("dashboard")) document.getElementById("nav-dashboard")?.classList.add("active");
-if(path.includes("wallet")) document.getElementById("nav-wallet")?.classList.add("active");
-if(path.includes("refer")) document.getElementById("nav-refer")?.classList.add("active");
-if(path.includes("cart")) document.getElementById("nav-cart")?.classList.add("active");
-
-// 🔥 WHATSAPP SHARE
-function shareWhatsApp() {
-  const link = document.getElementById("refLink").value;
-
-  const message = `🚀 Join EduRefer & Earn Money!\nUse my referral link:\n${link}`;
-
-  window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
-}
-
-// 🔥 LOGOUT
-function logout(){
-  localStorage.clear();
-  window.location.href = "login.html";
-}
+  // 🔥 LOGOUT
+  function logout() {
+    localStorage.clear();
+    window.location.href = "login.html";
+  }
 </script>
 
 </body>
+
 </html>

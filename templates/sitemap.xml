@@ -2,28 +2,28 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<url>
-<loc>https://edurefertech.com/</loc>
-</url>
+    <url>
+        <loc>https://edurefertech.com/</loc>
+    </url>
 
-<url>
-<loc>https://edurefertech.com/register.html</loc>
-</url>
+    <url>
+        <loc>https://edurefertech.com/register.html</loc>
+    </url>
 
-<url>
-<loc>https://edurefertech.com/login.html</loc>
-</url>
+    <url>
+        <loc>https://edurefertech.com/login.html</loc>
+    </url>
 
-<url>
-<loc>https://edurefertech.com/dashboard.html</loc>
-</url>
+    <url>
+        <loc>https://edurefertech.com/dashboard.html</loc>
+    </url>
 
-<url>
-<loc>https://edurefertech.com/about.html</loc>
-</url>
+    <url>
+        <loc>https://edurefertech.com/about.html</loc>
+    </url>
 
-<url>
-<loc>https://edurefertech.com/cart.html</loc>
-</url>
+    <url>
+        <loc>https://edurefertech.com/cart.html</loc>
+    </url>
 
 </urlset>

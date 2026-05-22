@@ -1,181 +1,185 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduRefer</title>
-    <meta name="description" content="Earn ₹300 per referral with EduRefer digital career kits.">
-    <link rel="stylesheet" href="static/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  </head>
+<!DOCTYPE html>
+<html lang="en">
 
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduRefer</title>
+  <meta name="description" content="Earn ₹300 per referral with EduRefer digital career kits.">
+  <link rel="stylesheet" href="static/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
 
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-       <img src="/static/Images/Edurefer Logo.png" class="logo-img" alt="Edurefer Logo">
+        <img src="/static/Images/Edurefer Logo.png" class="logo-img" alt="Edurefer Logo">
       </div>
 
       <div class="nav">
         <div class="nav">
-            <a href="index.html" class="active">Home</a>
-            <a href="#products">Products</a>
-            <a href="#about">About Us</a>
-            <a href="#faq">FAQ</a>
-            <a href="login.html" class="login-btn">Login</a>
-            <a href="register.html" class="signup-btn">Sign Up</a>
-          </div>
+          <a href="index.html" class="active">Home</a>
+          <a href="#products">Products</a>
+          <a href="#about">About Us</a>
+          <a href="#faq">FAQ</a>
+          <a href="login.html" class="login-btn">Login</a>
+          <a href="register.html" class="signup-btn">Sign Up</a>
+        </div>
       </div>
     </div>
   </header>
-  
+
   <main class="container">
 
-  <section class="hero">
+    <section class="hero">
 
-  <h1>
-    Learn, Grow & Earn with Edurefer
-  </h1>
+      <h1>
+        Learn, Grow & Earn with Edurefer
+      </h1>
 
-  <p>
-  Access practical career resources, placement kits and referral rewards designed for students and freshers.
-  </p>
+      <p>
+        Access practical career resources, placement kits and referral rewards designed for students and freshers.
+      </p>
 
-  <div class="hero-buttons">
+      <div class="hero-buttons">
 
-  <button class="button" onclick="smoothRedirect('register.html')">
-    Start Earning
-  </button>
+        <button class="button" onclick="smoothRedirect('register.html')">
+          Start Earning
+        </button>
 
-  <a href="#products" class="hero-button button">
-  View Products
-  </a>
+        <a href="#products" class="hero-button button">
+          View Products
+        </a>
 
-  </div>
+      </div>
 
-  </section>
+    </section>
 
-  <section class="products" id="products">
+    <section class="products" id="products">
 
-  <div class="card">
-  <img src="/static/Images/career_start_kit.jpg" class="product-img" width="400" height="220" alt="Career Starter Kit">
-  <h3>Career Starter Kit</h3>
-  <p>Resume + Roadmap</p>
-  <h2>₹500</h2>
-  <button class="button" onclick="buy()">Buy Now</button>
-  </div>
+      <div class="card">
+        <img src="/static/Images/career_start_kit.jpg" class="product-img" width="400" height="220"
+          alt="Career Starter Kit">
+        <h3>Career Starter Kit</h3>
+        <p>Resume + Roadmap</p>
+        <h2>₹500</h2>
+        <button class="button" onclick="buy()">Buy Now</button>
+      </div>
 
-  <div class="card disabled">
-  <img src="static/Images/career_switch_kit.jpg" class="product-img" width="400" height="220" alt="Career Switch Kit">
-  <h3>Job Switch Kit</h3>
-  <p>Switch to high salary job</p>
-  <h2>₹500</h2>
-  <button class="button" onclick="buy()" disabled>Buy Now</button>
-  </div>
+      <div class="card disabled">
+        <img src="static/Images/career_switch_kit.jpg" class="product-img" width="400" height="220"
+          alt="Career Switch Kit">
+        <h3>Job Switch Kit</h3>
+        <p>Switch to high salary job</p>
+        <h2>₹500</h2>
+        <button class="button" onclick="buy()" disabled>Buy Now</button>
+      </div>
 
-  <div class="card disabled">
-  <img src="static/Images/freshers_kit.jpg" class="product-img" width="400" height="220" alt="Freshers Kit">
-  <h3>Freshers Kit</h3>
-  <p>Get your first job</p>
-  <h2>₹500</h2>
-  <button class="button" onclick="buy()" disabled>Buy Now</button>
-  </div>
+      <div class="card disabled">
+        <img src="static/Images/freshers_kit.jpg" class="product-img" width="400" height="220" alt="Freshers Kit">
+        <h3>Freshers Kit</h3>
+        <p>Get your first job</p>
+        <h2>₹500</h2>
+        <button class="button" onclick="buy()" disabled>Buy Now</button>
+      </div>
 
-  </section>
+    </section>
 
-  <!-- ABOUT SECTION -->
+    <!-- ABOUT SECTION -->
 
-  <section class="about-section" id="about">
+    <section class="about-section" id="about">
 
-  <div class="about-content">
+      <div class="about-content">
 
-  <div class="about-text">
+        <div class="about-text">
 
-  <h2>About EduRefer</h2>
+          <h2>About EduRefer</h2>
 
-  <p>
-  EduRefer is a modern student-focused platform designed to help learners
-  grow their careers while earning through referrals.
-  </p>
+          <p>
+            EduRefer is a modern student-focused platform designed to help learners
+            grow their careers while earning through referrals.
+          </p>
 
-  <p>
-  We provide career starter kits, placement resources, resume guidance,
-  and digital learning products specially made for students and freshers.
-  </p>
+          <p>
+            We provide career starter kits, placement resources, resume guidance,
+            and digital learning products specially made for students and freshers.
+          </p>
 
-  <p>
-  Our mission is to make learning practical, affordable, and rewarding
-  for every student across India.
-  </p>
+          <p>
+            Our mission is to make learning practical, affordable, and rewarding
+            for every student across India.
+          </p>
 
-  <button class="button" onclick="smoothRedirect('register.html')">
-  Join EduRefer
-  </button>
+          <button class="button" onclick="smoothRedirect('register.html')">
+            Join EduRefer
+          </button>
 
-  </div>
+        </div>
 
-  <div class="about-image">
+        <div class="about-image">
 
-  <img src="static/Images/about.png"
-  alt="About EduRefer">
+          <img src="static/Images/about.png" alt="About EduRefer">
 
-  </div>
+        </div>
 
-  </div>
+      </div>
 
-  </section>
+      </div>
 
-  <!-- TRUST SECTION -->
+    </section>
 
-  <section class="trust-box">
+    <!-- TRUST SECTION -->
 
-  <h2>Why Choose EduRefer?</h2>
+    <section class="trust-box">
 
-  <div class="trust-grid">
+      <h2>Why Choose EduRefer?</h2>
 
-  <div>
-    Student Focused Resources
-  </div>
+      <div class="trust-grid">
 
-  <div>
-    Secure Razorpay Payments
-  </div>
+        <div>
+          Student Focused Resources
+        </div>
 
-  <div>
-    Instant Digital Access
-  </div>
+        <div>
+          Secure Razorpay Payments
+        </div>
 
-  <div>
-    Referral Reward System
-  </div>
+        <div>
+          Instant Digital Access
+        </div>
 
-  </div>
+        <div>
+          Referral Reward System
+        </div>
 
-  </section>
+      </div>
 
-  <!-- FAQ SECTION -->
+    </section>
 
-  <section class="faq" id="faq">
+    <!-- FAQ SECTION -->
 
-  <h2>Frequently Asked Questions</h2>
+    <section class="faq" id="faq">
 
-  <div class="faq-item">
-  <h3>How do referrals work?</h3>
-  <p>You receive referral rewards when someone purchases through your referral link.</p>
-  </div>
+      <h2>Frequently Asked Questions</h2>
 
-  <div class="faq-item">
-  <h3>When can I withdraw?</h3>
-  <p>Minimum withdrawal amount is ₹600.</p>
-  </div>
+      <div class="faq-item">
+        <h3>How do referrals work?</h3>
+        <p>You receive referral rewards when someone purchases through your referral link.</p>
+      </div>
 
-  <div class="faq-item">
-  <h3>How do I receive payment?</h3>
-  <p>Payments are sent directly to your UPI ID.</p>
-  </div>
+      <div class="faq-item">
+        <h3>When can I withdraw?</h3>
+        <p>Minimum withdrawal amount is ₹600.</p>
+      </div>
 
-  </section>
+      <div class="faq-item">
+        <h3>How do I receive payment?</h3>
+        <p>Payments are sent directly to your UPI ID.</p>
+      </div>
+
+    </section>
   </main>
   <footer style="text-align:center; padding:20px; color:#aaa;">
     &copy; 2026 EduRefer. All rights reserved.
@@ -185,41 +189,42 @@
   </footer>
 
   <script>
-  const path = window.location.pathname;
+    const path = window.location.pathname;
 
-  if(path.includes("index")) document.getElementById("nav-home")?.classList.add("active");
-  if(path.includes("dashboard")) document.getElementById("nav-dashboard")?.classList.add("active");
-  if(path.includes("wallet")) document.getElementById("nav-wallet")?.classList.add("active");
-  if(path.includes("cart")) document.getElementById("nav-cart")?.classList.add("active");
+    if (path.includes("index")) document.getElementById("nav-home")?.classList.add("active");
+    if (path.includes("dashboard")) document.getElementById("nav-dashboard")?.classList.add("active");
+    if (path.includes("wallet")) document.getElementById("nav-wallet")?.classList.add("active");
+    if (path.includes("cart")) document.getElementById("nav-cart")?.classList.add("active");
 
-  const token =localStorage.getItem("edurefer_token");
-
-  if(token){
-      window.location.href =
-      "dashboard.html";
-  }
-
-  function buy(){
     const token = localStorage.getItem("edurefer_token");
 
-    if(!token){
-      alert("Login First");
-      window.location="login.html";
-      return;
+    if (token) {
+      window.location.href =
+        "dashboard.html";
     }
 
-    window.location="cart.html";
-  }
+    function buy() {
+      const token = localStorage.getItem("edurefer_token");
 
-  // ✅ smooth redirect
-  function smoothRedirect(url){
+      if (!token) {
+        alert("Login First");
+        window.location = "login.html";
+        return;
+      }
+
+      window.location = "cart.html";
+    }
+
+    // ✅ smooth redirect
+    function smoothRedirect(url) {
       document.body.classList.add("fade-out");
 
       setTimeout(() => {
-          window.location.href = url;
+        window.location.href = url;
       }, 400);
-  }
+    }
   </script>
 
-  </body>
-  </html>
+</body>
+
+</html>

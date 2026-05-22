@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,157 +23,158 @@
 </head>
 
 <body>
-<div id="loader">
-  Loading...
-</div>
-
-<main>
-<div class="container">
-
-    <!-- LOGIN FORM -->
-    <div class="logo-top">
-      <img src="/static/Images/Edurefer Logo.png" alt="Edurefer Logo" class="logo-img">
+    <div id="loader">
+        Loading...
     </div>
-    <div class="form-box Login">
-        <h2 class="animation">Login</h2>
 
-        <form id="loginForm">
+    <main>
+        <div class="container">
 
-            <div class="input-box animation">
-                <label for="username">Username</label>
-                <input id="username" type="text" placeholder="Username" required>
+            <!-- LOGIN FORM -->
+            <div class="logo-top">
+                <img src="/static/Images/Edurefer Logo.png" alt="Edurefer Logo" class="logo-img">
             </div>
+            <div class="form-box Login">
+                <h2 class="animation">Login</h2>
 
-            <div class="input-box animation">
-                <label for="password">Password</label>
-                <input id="password" type="password" placeholder="Password" required>
+                <form id="loginForm">
+
+                    <div class="input-box animation">
+                        <label for="username">Username</label>
+                        <input id="username" type="text" placeholder="Username" required>
+                    </div>
+
+                    <div class="input-box animation">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" placeholder="Password" required>
+                    </div>
+
+                    <button type="submit" class="login-btn" style="margin-top: 10px;">Login</button>
+
+                </form>
+
+                <p class="regi-link">
+                    Don't have an account?
+                    <a href="#" onclick="goToRegister()">Register</a>
+                </p>
             </div>
+            <footer class="footer">
 
-            <button type="submit" class="login-btn" style="margin-top: 10px;">Login</button>
+                <p>© 2026 EduRefer</p>
 
-        </form>
+                <div class="footer-links">
 
-        <p class="regi-link">
-          Don't have an account?
-            <a href="#" onclick="goToRegister()">Register</a>
-        </p>
-    </div>
-<footer class="footer">
+                    <a href="terms.html">Terms</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="refund.html">Refund</a>
 
-    <p>© 2026 EduRefer</p>
+                </div>
+            </footer>
+        </div>
+    </main>
+    <script src="/static/config.js"></script>
+    <script src="/static/auth.js"></script>
 
-    <div class="footer-links">
+    <script>
 
-    <a href="terms.html">Terms</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="refund.html">Refund</a>
+        document.getElementById("loginForm")
+            .addEventListener("submit", async (e) => {
 
-    </div>
-</footer>
-</div>
-</main>
-<script src="/static/config.js"></script>
-<script src="/static/auth.js"></script>
+                e.preventDefault();
 
-<script>
+                const btn =
+                    document.querySelector(".login-btn");
 
-document.getElementById("loginForm")
-.addEventListener("submit", async (e) => {
+                btn.innerText = "Please wait...";
+                btn.disabled = true;
 
-    e.preventDefault();
+                const username =
+                    document.getElementById("username").value;
 
-    const btn =
-    document.querySelector(".login-btn");
+                const password =
+                    document.getElementById("password").value;
 
-    btn.innerText = "Please wait...";
-    btn.disabled = true;
+                try {
 
-    const username =
-    document.getElementById("username").value;
+                    const response = await fetch("/api/login", {
 
-    const password =
-    document.getElementById("password").value;
+                        method: "POST",
 
-    try{
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
 
-        const response = await fetch("/api/login", {
+                        body: JSON.stringify({
+                            username,
+                            password
+                        })
+                    });
 
-            method: "POST",
+                    const data = await response.json();
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+                    if (response.ok) {
 
-            body: JSON.stringify({
-                username,
-                password
-            })
-        });
+                        localStorage.setItem(
+                            "edurefer_token",
+                            data.token
+                        );
 
-        const data = await response.json();
+                        localStorage.setItem(
+                            "username",
+                            username
+                        );
 
-        if(response.ok){
+                        smoothRedirect("dashboard.html");
 
-            localStorage.setItem(
-                "edurefer_token",
-                data.token
-            );
+                    } else {
 
-            localStorage.setItem(
-                "username",
-                username
-            );
+                        alert(data.error || "Login failed");
 
-            smoothRedirect("dashboard.html");
+                        btn.innerText = "Login";
+                        btn.disabled = false;
+                    }
 
-        }else{
+                } catch (err) {
 
-            alert(data.error || "Login failed");
+                    console.log(err);
 
-            btn.innerText = "Login";
-            btn.disabled = false;
+                    alert("Server error");
+
+                    btn.innerText = "Login";
+                    btn.disabled = false;
+                }
+
+            });
+
+        /* LOADER */
+        window.onload = () => {
+            document.getElementById("loader").style.display = "none";
         }
 
-    }catch(err){
+        /* SMOOTH REDIRECT */
+        function smoothRedirect(url) {
 
-        console.log(err);
+            document.body.classList.add("fade-out");
 
-        alert("Server error");
+            setTimeout(() => {
+                window.location.href = url;
+            }, 400);
+        }
 
-        btn.innerText = "Login";
-        btn.disabled = false;
-    }
+        /* PAGE LOAD */
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
 
-});
+        /* GO TO REGISTER */
+        function goToRegister() {
 
-/* LOADER */
-window.onload = () => {
-  document.getElementById("loader").style.display = "none";
-}
+            smoothRedirect("register.html");
 
-/* SMOOTH REDIRECT */
-function smoothRedirect(url){
+        }
 
-  document.body.classList.add("fade-out");
-
-  setTimeout(() => {
-    window.location.href = url;
-  }, 400);
-}
-
-/* PAGE LOAD */
-window.addEventListener("load", () => {
-  document.body.classList.add("loaded");
-});
-
-/* GO TO REGISTER */
-function goToRegister(){
-
-  smoothRedirect("register.html");
-
-}
-
-</script>
+    </script>
 
 </body>
+
 </html>
