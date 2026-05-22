@@ -376,9 +376,7 @@ body {
 }
 
 .button:hover {
-
-    transform:
-        translateY(-5px);
+    transform:translateY(-5px);
 }
 
 /* FOOTER */
@@ -446,23 +444,36 @@ footer {
         font-size: 15px;
     }
 
-    .about-grid {
+    .about-main {
+        margin-top: 40px;
+        padding: 40px 20px;
+        border-radius: 20px;
+    }
 
+    .about-content {
         flex-direction: column;
-    }
-
-    .about-text {
-
         text-align: center;
+        gap: 30px;
     }
 
+    .about-image-card {
+        width: auto;
+        max-width: 320px;
+        height: 220px;
+    }
     .about-hero {
-
         padding: 80px 20px;
     }
 
-    .mission-section {
+    .about-text h2 {
+        font-size: 1.8rem;
+    }
 
+    .about-text p {
+        font-size: 15px;
+    }
+
+    .mission-section {
         padding: 60px 20px;
     }
 
