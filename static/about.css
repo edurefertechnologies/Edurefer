@@ -18,19 +18,14 @@
 
     --border: #dbeafe;
 
-    --shadow:
-        0 10px 30px rgba(15, 23, 42, 0.08);
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
 body {
 
     font-family: 'Poppins', sans-serif;
 
-    background:
-        linear-gradient(180deg,
-            #f8fbff,
-            #eef9ff,
-            #f0fdf9);
+    background: linear-gradient(180deg, #f8fbff, #eef9ff, #f0fdf9);
 
     color: var(--text);
 
@@ -63,16 +58,13 @@ body {
 
     z-index: 1000;
 
-    background:
-        rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.92);
 
     backdrop-filter: blur(10px);
 
-    border-bottom:
-        1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 
-    box-shadow:
-        0 2px 12px rgba(15, 23, 42, 0.05);
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
 }
 
 .header-inner {
@@ -141,21 +133,16 @@ body {
 
     margin: 40px auto;
 
-    background:
-        linear-gradient(135deg,
-            #38bdf8,
-            #34d399);
+    background: linear-gradient(135deg, #38bdf8, #34d399);
 
     color: white;
 
-    box-shadow:
-        0 20px 50px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 20px 50px rgba(56, 189, 248, 0.2);
 }
 
 .about-hero h1 {
 
-    font-size:
-        clamp(2.8rem, 5vw, 5rem);
+    font-size: clamp(2.8rem, 5vw, 5rem);
 
     line-height: 1.1;
 
@@ -170,8 +157,7 @@ body {
 
     font-size: 18px;
 
-    color:
-        rgba(255, 255, 255, 0.92);
+    color: rgba(255, 255, 255, 0.92);
 }
 
 /* ABOUT */
@@ -203,8 +189,7 @@ body {
 
 .about-text h2 {
 
-    font-size:
-        clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3rem);
 
     margin-bottom: 24px;
 }
@@ -235,8 +220,7 @@ body {
 
     border-radius: 24px;
 
-    box-shadow:
-        0 15px 40px rgba(37, 99, 235, 0.12);
+    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.12);
 }
 
 /* MISSION */
@@ -249,10 +233,7 @@ body {
 
     border-radius: 30px;
 
-    background:
-        linear-gradient(135deg,
-            #0f172a,
-            #1e293b);
+    background: linear-gradient(135deg, #0f172a, #1e293b);
 
     color: white;
 
@@ -261,8 +242,7 @@ body {
 
 .mission-section h2 {
 
-    font-size:
-        clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3rem);
 
     margin-bottom: 20px;
 }
@@ -282,8 +262,7 @@ body {
 
     display: grid;
 
-    grid-template-columns:
-        repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 
     gap: 25px;
 }
@@ -300,14 +279,12 @@ body {
 
     transition: 0.3s;
 
-    box-shadow:
-        0 10px 30px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
 .mission-card:hover {
 
-    transform:
-        translateY(-6px);
+    transform: translateY(-6px);
 }
 
 .mission-card h3 {
@@ -333,8 +310,7 @@ body {
 
 .cta-section h2 {
 
-    font-size:
-        clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
 
     margin-bottom: 20px;
 }
@@ -358,10 +334,7 @@ body {
 
     border-radius: 16px;
 
-    background:
-        linear-gradient(90deg,
-            #10b981,
-            #2563eb);
+    background: linear-gradient(90deg, #10b981, #2563eb);
 
     color: white;
 
@@ -371,12 +344,11 @@ body {
 
     transition: 0.35s;
 
-    box-shadow:
-        0 12px 30px rgba(37, 99, 235, 0.18);
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.18);
 }
 
 .button:hover {
-    transform:translateY(-5px);
+    transform: translateY(-5px);
 }
 
 /* FOOTER */
@@ -461,6 +433,7 @@ footer {
         max-width: 320px;
         height: 220px;
     }
+
     .about-hero {
         padding: 80px 20px;
     }
@@ -476,5 +449,4 @@ footer {
     .mission-section {
         padding: 60px 20px;
     }
-
 }
