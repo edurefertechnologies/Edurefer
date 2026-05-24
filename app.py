@@ -340,12 +340,21 @@ def login():
     db = SessionLocal()
 
     try:
+        username = data["username"].strip().lower()
+        password = data["password"]
+
         user = db.query(User).filter(
-            User.username == data["username"]
+            User.username == username
         ).first()
 
-        if not user or not check_password_hash(user.password, data["password"]):
-            return {"error": "Invalid username or password"}, 401
+        if not user:
+            return {"error":"Invalid username or password"},401
+
+        if not check_password_hash(
+            user.password,
+            password
+        ):
+            return {"error":"Invalid username or password"},401
 
         return {
             "token": user.token,
@@ -354,10 +363,11 @@ def login():
 
     except Exception as e:
         print("Login Error:", e)
-        return {"error": "Server error"}, 500
+        return {"error":"Server error"},500
 
     finally:
         db.close()
+
 
 # Wallet Info
 @app.route("/api/wallet", methods=["GET"])
