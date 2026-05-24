@@ -5,11 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard</title>
+  <meta name="description" content="View your referral stats, earnings, and recent activity on the EduRefer dashboard.">
+  <meta name="keywords" content="edurefer, dashboard, user stats, referrals, earnings, activity">
+  <meta name="author" content="EduRefer">
+  <meta property="og:title" content="EduRefer Dashboard">
+  <meta property="og:description" content="View your referral stats, earnings, and recent activity on the EduRefer dashboard.">
+  <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="static/styles.css">
-  <link rel="stylesheet" href="static/dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="preload" href="static/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/dashboard.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <noscript>
+    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="static/dashboard.css">
+  </noscript>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     .grid {
@@ -102,7 +117,8 @@
           </div>
 
           <div class="product-card disabled">
-            <img src="/static/Images/career_switch_kit.jpg" alt="Career Switch Kit" alt="Career Switch Kit" loading="lazy">
+            <img src="/static/Images/career_switch_kit.jpg" alt="Career Switch Kit" alt="Career Switch Kit"
+              loading="lazy">
             <div class="product-info">
               <h3>Job Switch Kit</h3>
               <p>Switch to high salary job</p>
