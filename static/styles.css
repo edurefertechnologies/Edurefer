@@ -96,10 +96,9 @@ body {
 /* ===== LOGO ===== */
 
 .logo-img {
+    height: 50px;
 
-    height: 92px;
-
-    width: auto;
+    width: 140px;
 
     object-fit: contain;
 
