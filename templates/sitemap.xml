@@ -15,15 +15,19 @@
     </url>
 
     <url>
-        <loc>https://edurefertech.com/dashboard.html</loc>
+        <loc>https://edurefertech.com/index.html</loc>
     </url>
 
     <url>
-        <loc>https://edurefertech.com/about.html</loc>
+        <loc>https://edurefertech.com/terms.html</loc>
     </url>
 
     <url>
-        <loc>https://edurefertech.com/cart.html</loc>
+        <loc>https://edurefertech.com/privacy.html</loc>
     </url>
 
+    <url>
+        <loc>https://edurefertech.com/refund.html</loc>
+    </url>
+    
 </urlset>
