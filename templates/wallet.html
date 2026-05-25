@@ -5,11 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Referral Rewards - EduRefer</title>
-  <meta name="description" content="Check your referral rewards balance, track earnings, and request payouts on the EduRefer Rewards page.">
+  <meta name="description"
+    content="Check your referral rewards balance, track earnings, and request payouts on the EduRefer Rewards page.">
   <meta name="keywords" content="edurefer, referral rewards, wallet, earnings, payout request, referral program">
   <meta name="author" content="EduRefer">
   <meta property="og:title" content="Referral Rewards - EduRefer">
-  <meta property="og:description" content="Check your referral rewards balance, track earnings, and request payouts on the EduRefer Rewards page.">
+  <meta property="og:description"
+    content="Check your referral rewards balance, track earnings, and request payouts on the EduRefer Rewards page.">
   <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,7 +130,8 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="/static/Images/Edurefer Logo.png" class="logo-img" alt="Edurefer Logo" width="140" height="50" loading="eager">
+        <img src="/static/Images/Edurefer Logo.png" class="logo-img" alt="Edurefer Logo" width="140" height="50"
+          loading="eager">
       </div>
 
       <div class="nav">
@@ -249,10 +252,28 @@
 
         const data = await res.json();
 
-        document.getElementById("walletBalance").innerText = data.balance || 0;
-        document.getElementById("totalEarned").innerText = data.balance || 0;
-        document.getElementById("withdrawableBalance").innerText = data.balance || 0;
-        document.getElementById("refCount").innerText = data.referrals || 0;
+        document.getElementById(
+          "walletBalance"
+        ).innerText =
+          data.balance || 0;
+
+        document.getElementById(
+          "totalEarned"
+        ).innerText =
+          data.earnings || 0;
+
+        document.getElementById(
+          "withdrawableBalance"
+        ).innerText =
+          data.balance || 0;
+
+        document.getElementById(
+          "refCount"
+        ).innerText =
+          data.referrals || 0;
+        if (data.referrals === 0) {
+          document.getElementById("refCount").innerText = "0";
+        }
 
         const withdrawBtn = document.querySelector(".btn");
 
@@ -275,9 +296,24 @@
       }
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
 
-      const username = localStorage.getItem("username") || "User";
+      const res = await fetch(
+        "/api/me",
+        {
+          headers: {
+            Authorization:
+              localStorage.getItem(
+                "edurefer_token"
+              )
+          }
+        });
+
+      const data =
+        await res.json();
+
+      const username =
+        data.username;
 
       let greet = "Hello";
       const hour = new Date().getHours();

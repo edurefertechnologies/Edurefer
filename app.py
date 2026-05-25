@@ -161,15 +161,26 @@ def get_me():
     user = get_user(token, db)
 
     if not user:
-        return {"error": "Unauthorized"}, 401
+        return {"error":"Unauthorized"},401
 
     # count referrals
     referrals = db.query(User).filter(User.referred_by == user.id).count()
 
+    purchases = db.query(Purchase).filter(
+        Purchase.user_id == user.id
+    ).all()
+
+    product_ids = [
+        p.product_id
+        for p in purchases
+    ]
+
     return {
         "username": user.username,
         "balance": user.balance,
-        "referrals": referrals
+        "referrals": referrals,
+        "products": product_ids,
+        "earnings": user.balance
     }
 
 
@@ -289,8 +300,11 @@ def create_order():
             "payment_capture": 1
         })
 
-        return flask.jsonify(order)
-
+        return flask.jsonify({
+            "id": order["id"],
+            "amount": order["amount"],
+            "key": RAZORPAY_KEY
+        })
     except Exception as e:
 
         print("CREATE ORDER ERROR:", e)
@@ -401,7 +415,7 @@ def wallet():
 # Download PDF (only if purchased)
 @app.route("/api/download")
 def download_pdf():
-    token = flask.request.headers.get("Authorization")
+    token = flask.request.args.get("token")
     db = SessionLocal()
 
     try:
@@ -466,6 +480,9 @@ def activity():
 
     user = get_user(token, db)
 
+    if not user:
+        return {"error":"Unauthorized"},401
+
     txns = db.query(Transaction)\
         .filter(Transaction.user_id == user.id)\
         .order_by(Transaction.id.desc())\
@@ -511,13 +528,50 @@ def verify_payment():
         # 🔥 STEP 5: mark purchase
         user.hasPurchased = True
 
+        purchase = Purchase(
+            user_id=user.id,
+            product_id=1
+        )
+
+        db.add(purchase)
+
+        txn_purchase = Transaction(
+            user_id=user.id,
+            amount=-500,
+            type="PURCHASE",
+            note="Career Starter Kit Purchased"
+        )
+
+        db.add(txn_purchase)
+
         # 🔥 STEP 6: referral reward
         if user.referred_by:
-            referrer = db.query(User).filter(User.id == user.referred_by).first()
+
+            referrer = db.query(User).filter(
+                User.id == user.referred_by
+            ).first()
 
             if referrer:
+
+                # Add reward
                 referrer.balance += 300
+
+                # Increase count
                 referrer.referrals += 1
+
+                # Save transaction
+                txn = Transaction(
+
+                    user_id=referrer.id,
+
+                    amount=300,
+
+                    type="REFERRAL",
+
+                    note=f"Referral reward from {user.username}"
+                )
+
+                db.add(txn)
 
         # 🔥 STEP 7: save
         db.commit()
@@ -530,8 +584,9 @@ def verify_payment():
         return {"error": "Payment verification failed"}, 400
 
     except Exception as e:
+        print("VERIFY ERROR:", str(e))
         db.rollback()
-        return {"error": str(e)}, 500
+        return {"error": str(e)},500
     
 # Withdraw via UPI
 @app.route("/api/reward-request", methods=["POST"])

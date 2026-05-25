@@ -9,7 +9,8 @@
   <meta name="keywords" content="edurefer, dashboard, user stats, referrals, earnings, activity">
   <meta name="author" content="EduRefer">
   <meta property="og:title" content="EduRefer Dashboard">
-  <meta property="og:description" content="View your referral stats, earnings, and recent activity on the EduRefer dashboard.">
+  <meta property="og:description"
+    content="View your referral stats, earnings, and recent activity on the EduRefer dashboard.">
   <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,7 +54,8 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="/static/Images/Edurefer Logo.png" class="logo-img" alt="Edurefer Logo" loading="eager" width="140" height="50">
+        <img src="/static/Images/Edurefer Logo.png" class="logo-img" alt="Edurefer Logo" loading="eager" width="140"
+          height="50">
       </div>
 
       <div class="nav">
@@ -144,6 +146,14 @@
         </div>
       </div>
 
+      <section class="my-products">
+
+        <h2>📚 My Products</h2>
+
+        <div id="myProducts"></div>
+
+      </section>
+
       <div class="card" style="margin-top:20px;">
         <h3>Transactions</h3>
         <ul id="txnList"></ul>
@@ -200,7 +210,76 @@
 
       document.getElementById("balance").innerText = "₹" + data.balance;
       document.getElementById("referrals").innerText = data.referrals || 0;
-      document.getElementById("earnings").innerText = "₹" + data.earnings;
+      document.getElementById("earnings").innerText = "₹" + data.earnings || 0;
+    }
+
+    async function loadProducts() {
+
+      const res =
+        await fetch("/api/me", {
+
+          headers: {
+            Authorization:
+              localStorage.getItem(
+                "edurefer_token"
+              )
+          }
+
+        });
+
+      const user =
+        await res.json();
+
+      let html = "";
+
+      if (
+        user.products.includes(1)
+      ) {
+
+        html += `
+          <div class="card">
+
+          <h3>
+          Career Starter Kit
+          </h3>
+
+          <p>
+          Purchased Product
+          </p>
+
+          <button
+          class="button"
+          onclick="downloadKit()">
+
+          ⬇ Download PDF
+
+          </button>
+
+          </div>
+
+          `;
+      }
+
+      document
+        .getElementById(
+          "myProducts"
+        )
+        .innerHTML = html;
+    }
+
+    loadProducts();
+
+    function downloadKit() {
+
+      const token =
+        localStorage.getItem(
+          "edurefer_token"
+        );
+
+      window.open(
+        `/api/download?token=${token}`
+      );
+
     }
 
     function updateCartCount() {

@@ -9,7 +9,8 @@
   <meta name="keywords" content="edurefer, cart, checkout, razorpay, secure payment, referral rewards">
   <meta name="author" content="EduRefer">
   <meta property="og:title" content="EduRefer Cart">
-  <meta property="og:description" content="Review your cart items and proceed to secure checkout with Razorpay on EduRefer.">
+  <meta property="og:description"
+    content="Review your cart items and proceed to secure checkout with Razorpay on EduRefer.">
   <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,7 +142,8 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="/static/Images/Edurefer Logo.png" class="logo-img" alt="Edurefer Logo" loading="eager" width="140" height="50">
+        <img src="/static/Images/Edurefer Logo.png" class="logo-img" alt="Edurefer Logo" loading="eager" width="140"
+          height="50">
       </div>
 
       <div class="nav">
@@ -335,57 +337,61 @@
       }
     }
 
+
     async function checkout() {
+
       let cart = getCart();
 
       if (cart.length === 0) {
-        alert("Cart empty!! Please add some products to cart before checkout.");
+        alert("Cart empty!! Add products to checkout.");
         return;
       }
 
-      let total = cart.reduce((sum, i) => sum + i.price * (i.quantity || 1), 0);
+      let total = cart.reduce(
+        (sum, i) => sum + i.price * (i.quantity || 1), 0
+      );
 
-      // ✅ STEP 1: Create order FIRST
+      // CREATE ORDER
       const res = await fetch("/api/create-order", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: total * 100 })
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          amount: total * 100
+        })
       });
 
       const order = await res.json();
 
       if (!order.id) {
-        alert("Something went wrong while creating order. Please try again.");
+        alert("Order creation failed");
         return;
       }
 
-      // ✅ STEP 2: Use order in Razorpay
       const options = {
-        key: "rzp_live_SqoOF4moBy3L6M",   // 🔑 YOUR RAZORPAY KEY
+        key: order.key,
         amount: order.amount,
         currency: "INR",
-        order_id: order.id, // 🔥 MOST IMPORTANT
+        order_id: order.id,
 
         name: "EduRefer",
         description: "Product Purchase",
 
         handler: async function (response) {
 
-          // 🔐 VERIFY PAYMENT
-          const verifyRes = await fetch("/api/verify-payment", {
-
-            method: "POST",
-
-            headers: {
-
-              "Content-Type": "application/json",
-
-              "Authorization":
-                localStorage.getItem("edurefer_token")
-            },
-
-            body: JSON.stringify(response)
-          });
+          const verifyRes = await fetch(
+            "/api/verify-payment",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization":
+                  localStorage.getItem("edurefer_token")
+              },
+              body: JSON.stringify(response)
+            }
+          );
 
           const result = await verifyRes.json();
 
@@ -394,22 +400,25 @@
             localStorage.removeItem("edurefer_cart");
             window.location.href = "dashboard.html";
           } else {
-            alert("Payment verification failed ❌");
+            alert(result.error);
           }
         }
       };
 
       const rzp = new Razorpay(options);
 
-      rzp.on("payment.failed", function (response) {
+      rzp.on(
+        "payment.failed",
+        function (response) {
 
-        console.log(response.error);
+          console.log(response.error);
 
-        alert(
-          "Payment Failed ❌\n\n" +
-          response.error.description
-        );
-      });
+          alert(
+            "Payment Failed ❌\n\n" +
+            response.error.description
+          );
+        }
+      );
 
       rzp.open();
     }
