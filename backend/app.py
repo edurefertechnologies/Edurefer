@@ -114,8 +114,8 @@ client = razorpay_client
 # App
 app = flask.Flask(
     __name__,
-    template_folder="templates",
-    static_folder="static"
+    static_folder="../frontend/dist",
+    static_url_path=""
 )
 
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "secret")
@@ -128,34 +128,28 @@ def get_user(token, db):
 # Routes
 @app.route("/")
 def home():
-    return {
-        "status": "ok",
-        "message": "EduRefer API Running 🚀"
-    }
+    return send_from_directory(
+        app.static_folder,
+        "index.html"
+    )
 
 @app.route("/<path:path>")
-def serve_pages(path):
+def serve_react(path):
 
-    allowed = [
-        "index.html",
-        "login.html",
-        "register.html",
-        "dashboard.html",
-        "about.html",
-        "wallet.html",
-        "refer.html",
-        "cart.html",
-        "terms.html",
-        "privacy.html",
-        "refund.html"
-    ]
+    file_path = os.path.join(
+        app.static_folder,
+        path
+    )
 
-    if path not in allowed:
-        return {"error":"Not found"}, 404
+    if os.path.exists(file_path):
+        return send_from_directory(
+            app.static_folder,
+            path
+        )
 
     return send_from_directory(
-        "templates",
-        path
+        app.static_folder,
+        "index.html"
     )
 
 @app.route("/api/me", methods=["GET"])
