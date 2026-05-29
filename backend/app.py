@@ -631,6 +631,12 @@ def withdraw():
     except Exception as e:
         return {"error": str(e)}, 500    
     
+@app.route("/test")
+def test():
+    return {
+        "message": "NEW CODE DEPLOYED"
+    }
+
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_react(path):
