@@ -22,17 +22,6 @@ import {
   IndianRupee,
 } from "lucide-react"
 
-// PRODUCT IMAGES
-
-import careerStarter
-  from "../assets/Images/career_start_kit.jpg"
-
-import careerSwitch
-  from "../assets/Images/career_switch_kit.jpg"
-
-import freshersKit
-  from "../assets/Images/freshers_kit.jpg"
-
 export default function Dashboard() {
 
   const navigate =
