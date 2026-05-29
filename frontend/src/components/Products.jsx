@@ -1,6 +1,6 @@
-import careerStarter from "../assets/images/career_start_kit.jpg"
-import careerSwitch from "../assets/images/career_switch_kit.jpg"
-import freshersKit from "../assets/images/freshers_kit.jpg"
+import careerStarter from "../assets/Images/career_start_kit.jpg"
+import careerSwitch from "../assets/Images/career_switch_kit.jpg"
+import freshersKit from "../assets/Images/freshers_kit.jpg"
 
 const products = [
 

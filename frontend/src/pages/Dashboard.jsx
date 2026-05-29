@@ -25,13 +25,13 @@ import {
 // PRODUCT IMAGES
 
 import careerStarter
-  from "../assets/images/career_start_kit.jpg"
+  from "../assets/Images/career_start_kit.jpg"
 
 import careerSwitch
-  from "../assets/images/career_switch_kit.jpg"
+  from "../assets/Images/career_switch_kit.jpg"
 
 import freshersKit
-  from "../assets/images/freshers_kit.jpg"
+  from "../assets/Images/freshers_kit.jpg"
 
 export default function Dashboard() {
 

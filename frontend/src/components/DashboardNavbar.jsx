@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate }
 from "react-router-dom"
 
-import logo from "../assets/images/Edurefer Logo.png"
+import logo from "../assets/Images/Edurefer Logo.png"
 import { useEffect } from "react"
 import { useState } from "react"
 import Refer from "../pages/Refer"

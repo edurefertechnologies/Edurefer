@@ -1,4 +1,4 @@
-import logo from "../assets/images/Edurefer Logo.png"
+import logo from "../assets/Images/Edurefer Logo.png"
 import { Link } from "react-router-dom"
 
 export default function Navbar() {
