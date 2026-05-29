@@ -5,3 +5,4 @@ sqlalchemy
 razorpay
 psycopg2-binary
 werkzeug
+python-dotenv
