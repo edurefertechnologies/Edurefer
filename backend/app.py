@@ -125,33 +125,6 @@ flask_cors.CORS(app)
 def get_user(token, db):
     return db.query(User).filter(User.token == token).first()
 
-# Routes
-@app.route("/")
-def home():
-    return send_from_directory(
-        app.static_folder,
-        "index.html"
-    )
-
-@app.route("/<path:path>")
-def serve_react(path):
-
-    file_path = os.path.join(
-        app.static_folder,
-        path
-    )
-
-    if os.path.exists(file_path):
-        return send_from_directory(
-            app.static_folder,
-            path
-        )
-
-    return send_from_directory(
-        app.static_folder,
-        "index.html"
-    )
-
 @app.route("/api/me", methods=["GET"])
 def get_me():
     token = flask.request.headers.get("Authorization")
@@ -471,16 +444,6 @@ def get_transactions():
 
     return result
 
-@app.route("/dashboard")
-def dashboard():
-
-    token = flask.request.cookies.get("token")
-
-    if not token:
-        return flask.redirect("/login.html")
-
-    return flask.render_template("dashboard.html")
-
 # Recent Activity (for dashboard)
 @app.route("/api/activity")
 def activity():
@@ -668,5 +631,25 @@ def withdraw():
     except Exception as e:
         return {"error": str(e)}, 500    
     
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve_react(path):
+
+    file_path = os.path.join(
+        app.static_folder,
+        path
+    )
+
+    if path and os.path.exists(file_path):
+        return send_from_directory(
+            app.static_folder,
+            path
+        )
+
+    return send_from_directory(
+        app.static_folder,
+        "index.html"
+    )
+
 if __name__ == "__main__":
     app.run()

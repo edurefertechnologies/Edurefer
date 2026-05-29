@@ -1,6 +1,6 @@
 import {
-  Routes,
-  Route,
+Routes,
+Route,
 } from "react-router-dom"
 
 import Home from "./pages/Home"
@@ -14,50 +14,50 @@ import Cart from "./pages/Cart"
 
 function App() {
 
-  return (
+return (
 
-    <Routes>
+  <Routes>
 
-      <Route
-        path="/"
-        element={<Home />}
-      />
-      <Route
-        path="/login"
-        element={<Login />}
-      />
-      <Route
-        path="/dashboard"
-        element={<Dashboard />}
-      />
+    <Route
+      path="/"
+      element={<Home />}
+    />
+    <Route
+      path="/login"
+      element={<Login />}
+    />
+    <Route
+      path="/dashboard"
+      element={<Dashboard />}
+    />
 
-      <Route
-        path="/register"
-        element={<Register />}
-      />
+    <Route
+      path="/register"
+      element={<Register />}
+    />
 
-      <Route
-        path="/about"
-        element={<About />}
-      />
+    <Route
+      path="/about"
+      element={<About />}
+    />
 
-      <Route
-        path="/refer"
-        element={<Refer />}
-      />
+    <Route
+      path="/refer"
+      element={<Refer />}
+    />
 
-      <Route
-        path="/wallet"
-        element={<Wallet />}
-      />
+    <Route
+      path="/wallet"
+      element={<Wallet />}
+    />
 
-      <Route
-        path="/cart"
-        element={<Cart />}
-      />
-      
-    </Routes>
-  )
+    <Route
+      path="/cart"
+      element={<Cart />}
+    />
+    
+  </Routes>
+)
 }
 
 export default App
