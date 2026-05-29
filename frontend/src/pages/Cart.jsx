@@ -460,7 +460,7 @@ export default function Cart() {
 
             <button
               onClick={() =>
-                navigate("/dashboard")
+                navigate("/dashboard#products")
               }
 
               className="
