@@ -9,7 +9,7 @@ import {
 } from "react-router-dom"
 
 import logo
-  from "../assets/images/Edurefer Logo.png"
+  from "../assets/Images/Edurefer Logo.png"
 
 export default function Login() {
 
