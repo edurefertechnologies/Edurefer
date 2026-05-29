@@ -23,36 +23,36 @@ function App() {
         element={<Home />}
       />
       <Route
-        path="/login"
+        path="/Login"
         element={<Login />}
       />
       <Route
-        path="/dashboard"
+        path="/Dashboard"
         element={<Dashboard />}
       />
 
       <Route
-        path="*"
+        path="/Register"
         element={<Register />}
       />
 
       <Route
-        path="/about"
+        path="/About"
         element={<About />}
       />
 
       <Route
-        path="/refer"
+        path="/Refer"
         element={<Refer />}
       />
 
       <Route
-        path="/wallet"
+        path="/Wallet"
         element={<Wallet />}
       />
 
       <Route
-        path="/cart"
+        path="/Cart"
         element={<Cart />}
       />
       
