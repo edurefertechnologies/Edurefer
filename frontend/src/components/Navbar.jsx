@@ -161,7 +161,7 @@ export default function Navbar() {
           {/* SIGNUP BUTTON */}
 
           <a
-            href="/Register"
+            href="/register"
             className="
               px-5
               py-2
