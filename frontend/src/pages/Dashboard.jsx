@@ -512,8 +512,11 @@ export default function Dashboard() {
 
         </section>
 
+        <div className="product-card fade-up">
         {/* DASHBOARD Products */}
         <Products mode="dashboard"/>
+
+        </div>
 
         {/* QUICK ACTIONS */}
 

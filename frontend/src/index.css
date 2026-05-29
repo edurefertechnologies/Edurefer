@@ -6,3 +6,64 @@ body{
   font-family: 'Poppins', sans-serif;
   background:#f8fbff;
 }
+
+/* Smooth fade animation */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.glass-card{
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.15);
+}
+
+@keyframes floating {
+
+  0%{
+    transform: translateY(0);
+  }
+
+  50%{
+    transform: translateY(-10px);
+  }
+
+  100%{
+    transform: translateY(0);
+  }
+}
+
+.floating{
+  animation: floating 4s ease-in-out infinite;
+}
+
+.fade-up{
+  animation:fadeUp .8s ease forwards;
+}
+
+.delay-1{
+  animation-delay:.2s;
+}
+
+.delay-2{
+  animation-delay:.4s;
+}
+
+.delay-3{
+  animation-delay:.6s;
+}

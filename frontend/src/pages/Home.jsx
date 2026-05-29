@@ -90,10 +90,7 @@ export default function Home() {
 
         {/* HERO */}
 
-        <section className="
-          mb-16
-          md:mb-24
-        ">
+        <section className="fade-up">
 
           <Hero />
 
@@ -101,10 +98,7 @@ export default function Home() {
 
         {/* PRODUCTS */}
 
-        <section className="
-          mb-16
-          md:mb-24
-        ">
+        <section className="product-card fade-up">
 
           <Products mode="home"/>
 
@@ -112,10 +106,7 @@ export default function Home() {
 
         {/* ABOUT */}
 
-        <section className="
-          mb-16
-          md:mb-24
-        ">
+        <section className="about-section fade-up">
 
           <About />
 
@@ -123,10 +114,7 @@ export default function Home() {
 
         {/* TRUST */}
 
-        <section className="
-          mb-16
-          md:mb-24
-        ">
+        <section className="fade-up">
 
           <TrustSection />
 
@@ -134,9 +122,7 @@ export default function Home() {
 
         {/* FAQ */}
 
-        <section className="
-          mb-10
-        ">
+        <section className="fade-up">
 
           <FAQ />
 
