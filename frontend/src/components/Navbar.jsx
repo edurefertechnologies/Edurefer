@@ -1,7 +1,5 @@
 import logo from "../assets/Images/Edurefer Logo.png"
 import { Link } from "react-router-dom"
-import Login from "../pages/Login"
-import Register from "../pages/Register"
 
 export default function Navbar() {
   return (
@@ -140,8 +138,8 @@ export default function Navbar() {
 
           {/* LOGIN BUTTON */}
 
-          <a
-            href="/Login"
+          <Link
+            to="/login"
             className="
               px-5
               py-2
@@ -156,12 +154,12 @@ export default function Navbar() {
             "
           >
             Login
-          </a>
+          </Link>
 
           {/* SIGNUP BUTTON */}
 
-          <a
-            href="/register"
+          <Link
+            to="/register"
             className="
               px-5
               py-2
@@ -177,7 +175,7 @@ export default function Navbar() {
             "
           >
             Sign Up
-          </a>
+          </Link>
 
         </nav>
 
