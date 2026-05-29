@@ -1,7 +1,0 @@
-Flask
-flask-cors
-gunicorn
-sqlalchemy
-razorpay
-psycopg2-binary
-werkzeug
