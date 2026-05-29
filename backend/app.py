@@ -629,7 +629,17 @@ def withdraw():
         }
 
     except Exception as e:
-        return {"error": str(e)}, 500    
+        return {"error""": str(e)}, 500
+
+@app.route("/debug")
+def debug():
+    return {
+        "static_folder": app.static_folder,
+        "exists": os.path.exists(app.static_folder),
+        "index_exists": os.path.exists(
+            os.path.join(app.static_folder, "index.html")
+        )
+    }    
     
 @app.route("/test")
 def test():
