@@ -1,5 +1,7 @@
 import logo from "../assets/Images/Edurefer Logo.png"
 import { Link } from "react-router-dom"
+import Login from "../pages/Login"
+import Register from "../pages/Register"
 
 export default function Navbar() {
   return (
