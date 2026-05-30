@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import { useEffect } from "react"
+import { useState } from "react"
+import products from ".."
 
 export default function Hero() {
   return (
@@ -110,7 +113,7 @@ export default function Hero() {
           {/* VIEW PRODUCTS */}
 
           <Link
-            to="#products"
+            to="/dashboard#products"
             className="
               px-8
               py-4
