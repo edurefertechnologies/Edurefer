@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from "react-router-dom"
 import { useEffect } from "react"
 import { useState } from "react"
-import products from ".."
 
 export default function Hero() {
   return (
