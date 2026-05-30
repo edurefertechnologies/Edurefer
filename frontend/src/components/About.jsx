@@ -1,4 +1,5 @@
 import aboutImage from "../assets/Images/about.png"
+import { Link } from "react-router-dom"
 
 export default function About() {
   return (
@@ -99,8 +100,8 @@ export default function About() {
 
           {/* BUTTON */}
 
-          <a
-            href="/register"
+          <Link
+            to="/register"
             className="
               inline-flex
               items-center
@@ -121,7 +122,7 @@ export default function About() {
             "
           >
             Join EduRefer
-          </a>
+          </Link>
 
         </div>
 
