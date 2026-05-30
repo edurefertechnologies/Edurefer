@@ -1,15 +1,7 @@
 import { Link, useLocation, useNavigate }
-from "react-router-dom"
+  from "react-router-dom"
 
 import logo from "../assets/Images/Edurefer Logo.png"
-import { useEffect } from "react"
-import { useState } from "react"
-import Refer from "../pages/Refer"
-import Dashboard from "../pages/Dashboard"
-import About from "../pages/About"
-import Wallet from "../pages/Wallet"
-import Cart from "../pages/Cart"
-
 
 export default function DashboardNavbar({
 
@@ -21,10 +13,6 @@ export default function DashboardNavbar({
   const navigate = useNavigate()
 
   const location = useLocation()
-
-  // =========================
-  // ACTIVE NAV STYLE
-  // =========================
 
   const navClass = (path) =>
 
@@ -60,54 +48,54 @@ export default function DashboardNavbar({
       ? "after:w-full"
       : "after:w-0 hover:after:w-full"
     }
-  `
 
-  // =========================
-  // LOGOUT
-  // =========================
+  `
 
   const logout = () => {
 
     localStorage.clear()
 
     navigate("/login")
+
   }
 
   return (
 
-    <header className="
-      sticky
-      top-0
-      z-50
+    <header
+      className="
+        sticky
+        top-0
+        z-50
 
-      bg-white/80
-      backdrop-blur-md
+        bg-white/80
+        backdrop-blur-md
 
-      border-b
-      border-white/50
+        border-b
+        border-white/50
 
-      shadow-sm
-    ">
+        shadow-sm
+      "
+    >
 
-      <div className="
-        max-w-7xl
-        mx-auto
+      <div
+        className="
+          max-w-7xl
+          mx-auto
 
-        px-4
-        md:px-6
-        lg:px-8
+          px-4
+          md:px-6
+          lg:px-8
 
-        py-4
+          py-4
 
-        flex
-        flex-col
-        xl:flex-row
+          flex
+          flex-col
 
-        items-center
-        justify-between
+          items-center
 
-        gap-5
-      ">
+          gap-4
+        "
+      >
 
         {/* LOGO */}
 
@@ -124,13 +112,10 @@ export default function DashboardNavbar({
             src={logo}
             alt="Edurefer Logo"
             className="
-              h-14
+              h-12
               md:h-16
 
               w-auto
-              object-contain
-
-              cursor-pointer
 
               hover:scale-105
 
@@ -142,18 +127,18 @@ export default function DashboardNavbar({
 
         {/* NAVIGATION */}
 
-        <nav className="
-          flex
-          flex-wrap
+        <nav
+          className="
+            flex
+            flex-wrap
 
-          items-center
-          justify-center
+            items-center
+            justify-center
 
-          gap-3
-          md:gap-5
-        ">
-
-          {/* HOME */}
+            gap-3
+            md:gap-5
+          "
+        >
 
           <Link
             to="/"
@@ -162,16 +147,12 @@ export default function DashboardNavbar({
             Home
           </Link>
 
-          {/* DASHBOARD */}
-
           <Link
             to="/dashboard"
             className={navClass("/dashboard")}
           >
             Dashboard
           </Link>
-
-          {/* ABOUT */}
 
           <Link
             to="/about"
@@ -180,16 +161,12 @@ export default function DashboardNavbar({
             About
           </Link>
 
-          {/* REFER */}
-
           <Link
             to="/refer"
             className={navClass("/refer")}
           >
             Refer
           </Link>
-
-          {/* WALLET */}
 
           <Link
             to="/wallet"
@@ -207,7 +184,8 @@ export default function DashboardNavbar({
             className="
               relative
 
-              text-2xl
+              text-xl
+              md:text-2xl
 
               hover:scale-110
 
@@ -217,49 +195,66 @@ export default function DashboardNavbar({
 
             🛒
 
-            <span className="
-              absolute
-              -top-2
-              -right-3
+            <span
+              className="
+                absolute
+                -top-2
+                -right-3
 
-              bg-red-500
+                bg-red-500
 
-              text-white
-              text-xs
-              font-bold
+                text-white
+                text-xs
+                font-bold
 
-              w-5
-              h-5
+                w-5
+                h-5
 
-              rounded-full
+                rounded-full
 
-              flex
-              items-center
-              justify-center
-            ">
+                flex
+                items-center
+                justify-center
+              "
+            >
               {cartCount}
             </span>
 
           </button>
 
+        </nav>
+
+        {/* USER + LOGOUT */}
+
+        <div
+          className="
+            flex
+            items-center
+            justify-center
+            flex-wrap
+
+            gap-3
+          "
+        >
+
           {/* USER */}
 
-          <div className="
-            px-4
-            py-2
+          <div
+            className="
+              px-3
+              py-1.5
 
-            rounded-xl
+              rounded-xl
 
-            bg-slate-100
+              bg-slate-100
 
-            text-slate-700
-            text-sm
-            md:text-base
+              text-slate-700
+              text-sm
+              md:text-base
 
-            font-semibold
-
-            whitespace-nowrap
-          ">
+              font-semibold
+            "
+          >
 
             👋 {username}
 
@@ -270,11 +265,8 @@ export default function DashboardNavbar({
           <button
             onClick={logout}
             className="
-              w-full
-              sm:w-auto
-
               px-5
-              py-2.5
+              py-2
 
               rounded-xl
 
@@ -283,6 +275,9 @@ export default function DashboardNavbar({
               to-red-600
 
               text-white
+              text-sm
+              md:text-base
+
               font-semibold
 
               shadow-lg
@@ -295,10 +290,11 @@ export default function DashboardNavbar({
             Logout
           </button>
 
-        </nav>
+        </div>
 
       </div>
 
     </header>
+
   )
 }
