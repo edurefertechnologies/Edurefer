@@ -268,9 +268,6 @@ def create_order():
 
         amount = int(amount)
 
-        print("KEY:", RAZORPAY_KEY)
-        print("SECRET:", RAZORPAY_SECRET)
-
         order = razorpay_client.order.create({
 
             "amount": amount,
