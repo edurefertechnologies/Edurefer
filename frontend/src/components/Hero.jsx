@@ -1,3 +1,6 @@
+import React from 'react'
+import { Link } from "react-router-dom"
+
 export default function Hero() {
   return (
 
@@ -85,8 +88,8 @@ export default function Hero() {
 
           {/* START EARNING */}
 
-          <a
-            href="/register"
+          <Link
+            to="/register"
             className="
               px-8
               py-4
@@ -102,12 +105,12 @@ export default function Hero() {
             "
           >
             Start Earning
-          </a>
+          </Link>
 
           {/* VIEW PRODUCTS */}
 
-          <a
-            href="#products"
+          <Link
+            to="#products"
             className="
               px-8
               py-4
@@ -125,7 +128,7 @@ export default function Hero() {
             "
           >
             View Products
-          </a>
+          </Link>
 
         </div>
 

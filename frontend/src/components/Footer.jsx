@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   return (
 
@@ -42,8 +44,8 @@ export default function Footer() {
           gap-5
         ">
 
-          <a
-            href="/terms"
+          <Link
+            to="/terms"
             target="_blank"
             className="
               text-sky-400
@@ -53,12 +55,12 @@ export default function Footer() {
             "
           >
             Terms
-          </a>
+          </Link>
 
           <span className="text-slate-500">|</span>
 
-          <a
-            href="/privacy"
+          <Link
+            to="/privacy"
             target="_blank"
             className="
               text-sky-400
@@ -68,12 +70,12 @@ export default function Footer() {
             "
           >
             Privacy
-          </a>
+          </Link>
 
           <span className="text-slate-500">|</span>
 
-          <a
-            href="/refund"
+          <Link 
+            to="/refund"
             target="_blank"
             className="
               text-sky-400
@@ -83,7 +85,7 @@ export default function Footer() {
             "
           >
             Refund
-          </a>
+          </Link>
 
         </div>
 

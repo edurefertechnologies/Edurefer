@@ -52,8 +52,8 @@ export default function Navbar() {
           gap-6
         ">
 
-          <a
-            href="/"
+          <Link
+            to="/"
             className="
               text-slate-900
               font-semibold
@@ -71,10 +71,10 @@ export default function Navbar() {
             "
           >
             Home
-          </a>
+          </Link>
 
-          <a
-            href="#products"
+          <Link
+            to="#products"
             className="
               text-slate-900
               font-semibold
@@ -92,10 +92,10 @@ export default function Navbar() {
             "
           >
             Products
-          </a>
+          </Link>
 
-          <a
-            href="#about"
+          <Link
+            to="#about"
             className="
               text-slate-900
               font-semibold
@@ -113,10 +113,10 @@ export default function Navbar() {
             "
           >
             About Us
-          </a>
+          </Link>
 
-          <a
-            href="#faq"
+          <Link
+            to="#faq"
             className="
               text-slate-900
               font-semibold
@@ -134,7 +134,7 @@ export default function Navbar() {
             "
           >
             FAQ
-          </a>
+          </Link>
 
           {/* LOGIN BUTTON */}
 
