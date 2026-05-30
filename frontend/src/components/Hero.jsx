@@ -113,7 +113,7 @@ export default function Hero() {
           {/* VIEW PRODUCTS */}
 
           <Link
-            to="/dashboard#products"
+            to="/#products"
             className="
               px-8
               py-4

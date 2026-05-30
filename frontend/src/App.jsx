@@ -11,6 +11,10 @@ import Refer from "./pages/Refer"
 import About from "./pages/About"
 import Wallet from "./pages/Wallet"
 import Cart from "./pages/Cart"
+import Terms from "./pages/Terms"
+import Privacy from "./pages/Privacy"
+import Refund from "./pages/Refund"
+import Contact from "./pages/Contact"
 
 function App() {
 
@@ -54,6 +58,26 @@ return (
     <Route
       path="/cart"
       element={<Cart />}
+    />
+
+    <Route
+      path="/terms"
+      element={<Terms />}
+    />
+
+    <Route
+      path="/privacy"
+      element={<Privacy />}
+    />
+
+    <Route
+      path="/refund"
+      element={<Refund />}
+    />
+
+    <Route
+      path="/contact"
+      element={<Contact />}
     />
     
   </Routes>

@@ -1,28 +1,27 @@
 import { useEffect } from "react"
-
-import { useNavigate }
-from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
 import Navbar
-from "../components/Navbar"
+  from "../components/Navbar"
 
 import Hero
-from "../components/Hero"
+  from "../components/Hero"
 
 import Products
-from "../components/Products"
+  from "../components/Products"
 
 import About
-from "../components/About"
+  from "../components/About"
 
 import TrustSection
-from "../components/TrustSection"
+  from "../components/TrustSection"
 
 import FAQ
-from "../components/FAQ"
+  from "../components/FAQ"
 
 import Footer
-from "../components/Footer"
+  from "../components/Footer"
 
 export default function Home() {
 
@@ -100,7 +99,7 @@ export default function Home() {
 
         <section className="product-card fade-up">
 
-          <Products mode="home"/>
+          <Products mode="home" />
 
         </section>
 
