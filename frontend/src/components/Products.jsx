@@ -1,6 +1,9 @@
 import careerStarter from "../assets/Images/career_start_kit.jpg"
 import careerSwitch from "../assets/Images/career_switch_kit.jpg"
 import freshersKit from "../assets/Images/freshers_kit.jpg"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { useState } from "react"
 
 const products = [
 
@@ -37,135 +40,131 @@ export default function Products({
   mode = "home"
 }) {
 
-  const buy = (product) => {
+  const navigate = useNavigate()
 
-    // =========================
-    // HOME PAGE
-    // =========================
+  const buy = (product) => {
 
     if (mode === "home") {
 
-      window.location.href =
-        "/register"
+      navigate("/register")
 
       return
     }
 
-    // =========================
-    // DASHBOARD PAGE
-    // =========================
+  // =========================
+  // DASHBOARD PAGE
+  // =========================
 
-    const cart =
-      JSON.parse(
-        localStorage.getItem(
-          "edurefer_cart"
-        )
-      ) || []
-
-    const existing =
-      cart.find(
-        item =>
-          item.id === product.id
+  const cart =
+    JSON.parse(
+      localStorage.getItem(
+        "edurefer_cart"
       )
+    ) || []
 
-    if (existing) {
-
-      existing.quantity += 1
-
-    } else {
-
-      cart.push({
-
-        id: product.id,
-
-        title:
-          product.title,
-
-        description:
-          product.description,
-
-        price:
-          product.price,
-
-        image:
-          product.image,
-
-        quantity: 1,
-
-      })
-
-    }
-
-    localStorage.setItem(
-
-      "edurefer_cart",
-
-      JSON.stringify(cart)
-
+  const existing =
+    cart.find(
+      item =>
+        item.id === product.id
     )
 
-    alert(
-      `${product.title} added to cart ✅`
-    )
+  if (existing) {
 
-    window.location.href =
-      "/cart"
+    existing.quantity += 1
+
+  } else {
+
+    cart.push({
+
+      id: product.id,
+
+      title:
+        product.title,
+
+      description:
+        product.description,
+
+      price:
+        product.price,
+
+      image:
+        product.image,
+
+      quantity: 1,
+
+    })
+
   }
 
-  return (
+  localStorage.setItem(
 
-    <section
-      id="products"
-      className="
+    "edurefer_cart",
+
+    JSON.stringify(cart)
+
+  )
+
+  alert(
+    `${product.title} added to cart ✅`
+  )
+
+  navigate("/cart")
+}
+
+return (
+
+  <section
+    id="products"
+    className="
         py-20
       "
-    >
+  >
 
-      {/* TITLE */}
+    {/* TITLE */}
 
-      <div className="
+    <div className="
         text-center
         mb-14
       ">
 
-        <h2 className="
+      <h2 className="
           text-4xl
           md:text-5xl
           font-bold
           text-slate-900
           mb-4
         ">
-          Our Products
-        </h2>
+        Our Products
+      </h2>
 
-        <p className="
+      <p className="
           text-slate-500
           text-lg
           max-w-2xl
           mx-auto
         ">
-          Practical career resources
-          and digital kits specially
-          designed for students and
-          freshers.
-        </p>
+        Practical career resources
+        and digital kits specially
+        designed for students and
+        freshers.
+      </p>
 
-      </div>
+    </div>
 
-      {/* PRODUCTS */}
+    {/* PRODUCTS */}
 
-      <div className="
+    <div className="
         grid
         sm:grid-cols-2
         lg:grid-cols-3
         gap-8
       ">
 
-        {products.map((product) => (
+      {products.map((product) => (
 
-          <div
-            key={product.id}
-            className={`
+        <div
+          key={product.id}
+          className={`
               bg-white
               rounded-[28px]
               p-6
@@ -178,26 +177,25 @@ export default function Products({
               hover:shadow-2xl
               overflow-hidden
 
-              ${
-                product.disabled
-                  ? "opacity-70"
-                  : ""
-              }
+              ${product.disabled
+              ? "opacity-70"
+              : ""
+            }
             `}
-          >
+        >
 
-            {/* IMAGE */}
+          {/* IMAGE */}
 
-            <div className="
+          <div className="
               overflow-hidden
               rounded-2xl
               mb-6
             ">
 
-              <img
-                src={product.image}
-                alt={product.title}
-                className="
+            <img
+              src={product.image}
+              alt={product.title}
+              className="
                   w-full
                   aspect-video
                   object-cover
@@ -205,48 +203,48 @@ export default function Products({
                   transition
                   duration-500
                 "
-              />
+            />
 
-            </div>
+          </div>
 
-            {/* INFO */}
+          {/* INFO */}
 
-            <h3 className="
+          <h3 className="
               text-3xl
               font-bold
               text-slate-900
               mb-3
             ">
-              {product.title}
-            </h3>
+            {product.title}
+          </h3>
 
-            <p className="
+          <p className="
               text-slate-500
               text-lg
               mb-5
             ">
-              {product.description}
-            </p>
+            {product.description}
+          </p>
 
-            <h2 className="
+          <h2 className="
               text-4xl
               font-bold
               text-blue-600
               mb-8
             ">
-              ₹{product.price}
-            </h2>
+            ₹{product.price}
+          </h2>
 
-            {/* BUTTON */}
+          {/* BUTTON */}
 
-            <button
-              onClick={() =>
-                buy(product)
-              }
-              disabled={
-                product.disabled
-              }
-              className={`
+          <button
+            onClick={() =>
+              buy(product)
+            }
+            disabled={
+              product.disabled
+            }
+            className={`
                 w-full
                 py-4
                 rounded-2xl
@@ -255,28 +253,27 @@ export default function Products({
                 transition-all
                 duration-300
 
-                ${
-                  product.disabled
-                    ? "bg-slate-300 text-slate-600 cursor-not-allowed"
-                    : "bg-gradient-to-r from-emerald-500 to-blue-600 text-white hover:scale-105 shadow-lg"
-                }
-              `}
-            >
-
-              {
-                mode === "home"
-                  ? "Get Started"
-                  : "Add To Cart"
+                ${product.disabled
+                ? "bg-slate-300 text-slate-600 cursor-not-allowed"
+                : "bg-gradient-to-r from-emerald-500 to-blue-600 text-white hover:scale-105 shadow-lg"
               }
+              `}
+          >
 
-            </button>
+            {
+              mode === "home"
+                ? "Get Started"
+                : "Add To Cart"
+            }
 
-          </div>
+          </button>
 
-        ))}
+        </div>
 
-      </div>
+      ))}
 
-    </section>
-  )
+    </div>
+
+  </section>
+)
 }
