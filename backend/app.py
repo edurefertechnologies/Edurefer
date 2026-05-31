@@ -128,16 +128,23 @@ def get_user(token, db):
 
 @app.route("/api/me", methods=["GET"])
 def get_me():
-    token = flask.flask.globals.request.headers.get("Authorization")
+
+    token = flask.request.headers.get(
+        "Authorization"
+    )
+
     db = SessionLocal()
 
     user = get_user(token, db)
 
     if not user:
-        return {"error":"Unauthorized"},401
+        return {
+            "error": "Unauthorized"
+        }, 401
 
-    # count referrals
-    referrals = db.query(User).filter(User.referred_by == user.id).count()
+    referrals = db.query(User).filter(
+        User.referred_by == user.id
+    ).count()
 
     purchases = db.query(Purchase).filter(
         Purchase.user_id == user.id
@@ -149,18 +156,27 @@ def get_me():
     ]
 
     return {
-        "username": user.username,
-        "balance": user.balance,
-        "referrals": referrals,
-        "products": product_ids,
-        "earnings": user.balance
-    }
 
+        "username":
+        user.username,
+
+        "balance":
+        user.balance,
+
+        "referrals":
+        referrals,
+
+        "products":
+        product_ids,
+
+        "earnings":
+        user.balance
+    }
 
 @app.route("/api/register", methods=["POST"])
 def register():
 
-    data = flask.flask.globals.request.json
+    data = flask.request.json
 
     print("REGISTER REQUEST =", data)
 
@@ -253,7 +269,7 @@ def create_order():
 
     try:
 
-        body = flask.flask.globals.request.json
+        body = flask.request.json
 
         if not body:
             return {
@@ -295,7 +311,7 @@ def create_order():
 
 @app.route("/api/payout", methods=["POST"])
 def payout():
-    token = flask.flask.globals.request.headers.get("Authorization")
+    token = flask.request.headers.get("Authorization")
     db = SessionLocal()
     user = get_user(token, db)
 
@@ -397,7 +413,7 @@ def wallet():
 
     try:
 
-        token = flask.flask.globals.request.headers.get("Authorization")
+        token = flask.request.headers.get("Authorization")
 
         if not token:
             return {"error":"Unauthorized"}, 401
@@ -473,7 +489,7 @@ def download_pdf():
 # Transaction History
 @app.route("/api/transactions", methods=["GET"])
 def get_transactions():
-    token = flask.flask.globals.request.headers.get("Authorization")
+    token = flask.request.headers.get("Authorization")
     db = SessionLocal()
 
     user = get_user(token, db)
@@ -503,7 +519,7 @@ def get_transactions():
 # Recent Activity (for dashboard)
 @app.route("/api/activity")
 def activity():
-    token = flask.flask.globals.request.headers.get("Authorization")
+    token = flask.request.headers.get("Authorization")
     db = SessionLocal()
 
     user = get_user(token, db)
@@ -531,7 +547,7 @@ def activity():
 # Verify Payment and Reward
 @app.route("/api/verify-payment", methods=["POST"])
 def verify_payment():
-    data = flask.flask.globals.request.json
+    data = flask.request.json
     db = SessionLocal()   # 🔥 STEP 1: yaha
 
     try:
@@ -543,7 +559,7 @@ def verify_payment():
         })
 
         # 🔥 STEP 3: user nikaal
-        token = flask.flask.globals.request.headers.get("Authorization")
+        token = flask.request.headers.get("Authorization")
         user = db.query(User).filter(User.token == token).first()
 
         if not user:
@@ -652,7 +668,7 @@ def my_products():
 @app.route("/api/reward-request", methods=["POST"])
 def withdraw():
     data = flask.request.get_json()
-    token = flask.flask.globals.request.headers.get("Authorization")
+    token = flask.request.headers.get("Authorization")
 
     db = SessionLocal()
 

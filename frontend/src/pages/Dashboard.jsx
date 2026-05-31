@@ -44,7 +44,7 @@ export default function Dashboard() {
     useState("")
 
   const [username, setUsername] =
-    useState("User")
+    useState("user")
 
   const [cartCount, setCartCount] =
     useState(0)
