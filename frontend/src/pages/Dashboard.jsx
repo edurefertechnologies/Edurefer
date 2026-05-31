@@ -240,7 +240,7 @@ export default function Dashboard() {
     )
   }
 
-  cconsole.log(
+  console.log(
     "Dashboard State Username =",
     username
   )
