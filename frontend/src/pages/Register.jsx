@@ -40,38 +40,32 @@ export default function Register() {
   useEffect(() => {
 
     window.scrollTo({
+
       top: 0,
       behavior: "smooth",
+
     })
 
-    const hash =
-      window.location.hash
+    const params =
+      new URLSearchParams(
+        window.location.search
+      )
 
-    if (hash.includes("?")) {
+    const ref =
+      params.get("ref")
 
-      const queryString =
-        hash.split("?")[1]
+    if (ref) {
 
-      const params =
-        new URLSearchParams(
-          queryString
-        )
+      localStorage.setItem(
+        "referrer",
+        ref.toLowerCase()
+      )
 
-      const ref =
-        params.get("ref")
+      console.log(
+        "Referral Found:",
+        ref
+      )
 
-      if (ref) {
-
-        localStorage.setItem(
-          "referrer",
-          ref
-        )
-
-        console.log(
-          "Referral Found:",
-          ref
-        )
-      }
     }
 
   }, [])
