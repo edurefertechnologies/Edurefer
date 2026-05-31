@@ -126,52 +126,36 @@ flask_cors.CORS(app)
 def get_user(token, db):
     return db.query(User).filter(User.token == token).first()
 
-@app.route("/api/me", methods=["GET"])
+# Routes
+@app.route("/api/me")
 def get_me():
 
+    db = SessionLocal()
     token = flask.request.headers.get(
         "Authorization"
     )
 
-    db = SessionLocal()
+    try:
 
-    user = get_user(token, db)
+        user = get_user(token, db)
 
-    if not user:
+        if not user:
+            return {
+                "error":"Unauthorized"
+            },401
+
         return {
-            "error": "Unauthorized"
-        }, 401
+                "username": user.username,
+                "balance": user.balance,
+                "referrals": user.referrals,
+                "products": [p.product_id for p in db.query(Purchase).filter(Purchase.user_id == user.id).all()],
+                "earnings": user.balance
+        }
 
-    referrals = db.query(User).filter(
-        User.referred_by == user.id
-    ).count()
+    finally:
 
-    purchases = db.query(Purchase).filter(
-        Purchase.user_id == user.id
-    ).all()
+        db.close()
 
-    product_ids = [
-        p.product_id
-        for p in purchases
-    ]
-
-    return {
-
-        "username":
-        user.username,
-
-        "balance":
-        user.balance,
-
-        "referrals":
-        referrals,
-
-        "products":
-        product_ids,
-
-        "earnings":
-        user.balance
-    }
 
 @app.route("/api/register", methods=["POST"])
 def register():
@@ -261,6 +245,7 @@ def register():
             "error": str(e)
         }, 500
 
+    db.close()
     return {"ok": True}
 
 # Razorpay Order Creation
@@ -541,6 +526,7 @@ def activity():
             "type": t.type
         })
 
+    db.close()
     return result
 
 
@@ -632,10 +618,14 @@ def verify_payment():
         db.rollback()
         return {"error": str(e)},500
     
+    finally:
+        db.close()   
+
+
 @app.route("/api/my-products")
 def my_products():
 
-    token = flask.globals.request.headers.get(
+    token = flask.request.headers.get(
         "Authorization"
     )
 
@@ -662,6 +652,7 @@ def my_products():
 
         })
 
+    db.close()
     return products
 
 # Withdraw via UPI
@@ -733,7 +724,10 @@ def withdraw():
         }
 
     except Exception as e:
-        return {"error""": str(e)}, 500
+        return {"error": str(e)}, 500
+    
+    finally:
+        db.close()
 
 @app.route("/debug")
 def debug():
@@ -797,4 +791,5 @@ def debug_users():
 
         })
 
+    db.close()
     return data
