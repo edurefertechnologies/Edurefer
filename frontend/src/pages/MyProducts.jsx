@@ -9,7 +9,7 @@ import {
 } from "react-router-dom"
 
 import DashboardNavbar
-from "../components/DashboardNavbar"
+  from "../components/DashboardNavbar"
 
 export default function MyProducts() {
 
@@ -173,29 +173,24 @@ export default function MyProducts() {
 
                 {/* Download Button */}
 
-                <Link
-                  to={`${import.meta.env.VITE_API_URL}/api/download?token=${token}`}
-
+                <a
+                  href={`${import.meta.env.VITE_API_URL}/api/download?token=${token}`}
+                  target="_blank"
+                  rel="noreferrer"
                   className="
-                    inline-block
-                    mt-6
-
-                    bg-emerald-600
-                    hover:bg-emerald-700
-
-                    text-white
-
-                    px-6
-                    py-3
-
-                    rounded-xl
-
-                    transition
-                  "
+                  inline-block
+                  mt-6
+                  bg-emerald-600
+                  hover:bg-emerald-700
+                  text-white
+                  px-6
+                  py-3
+                  rounded-xl
+                  transition
+                "
                 >
                   Download PDF
-
-                </Link>
+                </a>
 
               </div>
 

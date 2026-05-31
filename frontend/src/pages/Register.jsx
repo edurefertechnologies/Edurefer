@@ -46,25 +46,35 @@ export default function Register() {
 
     })
 
-    const params =
-      new URLSearchParams(
-        window.location.search
-      )
+    const hash =
+      window.location.hash
 
-    const ref =
-      params.get("ref")
+    if (hash.includes("?")) {
 
-    if (ref) {
+      const queryString =
+        hash.split("?")[1]
 
-      localStorage.setItem(
-        "referrer",
-        ref.toLowerCase()
-      )
+      const params =
+        new URLSearchParams(
+          queryString
+        )
 
-      console.log(
-        "Referral Found:",
-        ref
-      )
+      const ref =
+        params.get("ref")
+
+      if (ref) {
+
+        localStorage.setItem(
+          "referrer",
+          ref.toLowerCase()
+        )
+
+        console.log(
+          "Referral Found:",
+          ref
+        )
+
+      }
 
     }
 
