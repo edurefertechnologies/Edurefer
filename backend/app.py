@@ -3,6 +3,7 @@ import secrets
 import flask
 from datetime import datetime
 from flask import send_from_directory
+import flask.globals
 import flask_cors
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, ForeignKey
@@ -127,7 +128,7 @@ def get_user(token, db):
 
 @app.route("/api/me", methods=["GET"])
 def get_me():
-    token = flask.request.headers.get("Authorization")
+    token = flask.flask.globals.request.headers.get("Authorization")
     db = SessionLocal()
 
     user = get_user(token, db)
@@ -159,7 +160,7 @@ def get_me():
 @app.route("/api/register", methods=["POST"])
 def register():
 
-    data = flask.request.json
+    data = flask.flask.globals.request.json
 
     print("REGISTER REQUEST =", data)
 
@@ -252,7 +253,7 @@ def create_order():
 
     try:
 
-        body = flask.request.json
+        body = flask.flask.globals.request.json
 
         if not body:
             return {
@@ -294,7 +295,7 @@ def create_order():
 
 @app.route("/api/payout", methods=["POST"])
 def payout():
-    token = flask.request.headers.get("Authorization")
+    token = flask.flask.globals.request.headers.get("Authorization")
     db = SessionLocal()
     user = get_user(token, db)
 
@@ -329,7 +330,7 @@ def payout():
 # Login
 @app.route("/api/login", methods=["POST"])
 def login():
-    data = flask.request.json
+    data = flask.flask.globals.request.json
     db = SessionLocal()
 
     try:
@@ -370,7 +371,7 @@ def wallet():
 
     try:
 
-        token = flask.request.headers.get("Authorization")
+        token = flask.flask.globals.request.headers.get("Authorization")
 
         if not token:
             return {"error":"Unauthorized"}, 401
@@ -391,13 +392,42 @@ def wallet():
     finally:
         db.close()
 
-# Download PDF (only if purchased)
-@app.route("/api/download")
-def download_pdf():
+#preview PDF (only if purchased)
+@app.route("/api/view-pdf")
+def view_pdf():
+
     token = flask.request.args.get("token")
+
     db = SessionLocal()
 
     try:
+
+        user = get_user(token, db)
+
+        if not user:
+            return {"error":"Unauthorized"},401
+
+        if not user.hasPurchased:
+            return {"error":"Buy product first"},403
+
+        return flask.send_file(
+            "pdfs/Career Starter Kit.pdf",
+            as_attachment=False
+        )
+
+    finally:
+        db.close()
+
+# Download PDF (only if purchased)
+@app.route("/api/download")
+def download_pdf():
+
+    token = flask.request.args.get("token")
+
+    db = SessionLocal()
+
+    try:
+
         user = get_user(token, db)
 
         if not user:
@@ -406,7 +436,10 @@ def download_pdf():
         if not user.hasPurchased:
             return {"error": "Buy product first"}, 403
 
-        return flask.send_file("pdfs/Career Starter Kit.pdf", as_attachment=True)
+        return flask.send_file(
+            "pdfs/Career Starter Kit.pdf",
+            as_attachment=True
+        )
 
     finally:
         db.close()
@@ -414,7 +447,7 @@ def download_pdf():
 # Transaction History
 @app.route("/api/transactions", methods=["GET"])
 def get_transactions():
-    token = flask.request.headers.get("Authorization")
+    token = flask.flask.globals.request.headers.get("Authorization")
     db = SessionLocal()
 
     user = get_user(token, db)
@@ -444,7 +477,7 @@ def get_transactions():
 # Recent Activity (for dashboard)
 @app.route("/api/activity")
 def activity():
-    token = flask.request.headers.get("Authorization")
+    token = flask.flask.globals.request.headers.get("Authorization")
     db = SessionLocal()
 
     user = get_user(token, db)
@@ -472,7 +505,7 @@ def activity():
 # Verify Payment and Reward
 @app.route("/api/verify-payment", methods=["POST"])
 def verify_payment():
-    data = flask.request.json
+    data = flask.flask.globals.request.json
     db = SessionLocal()   # 🔥 STEP 1: yaha
 
     try:
@@ -484,7 +517,7 @@ def verify_payment():
         })
 
         # 🔥 STEP 3: user nikaal
-        token = flask.request.headers.get("Authorization")
+        token = flask.flask.globals.request.headers.get("Authorization")
         user = db.query(User).filter(User.token == token).first()
 
         if not user:
@@ -495,7 +528,7 @@ def verify_payment():
             return {"status": "success"}
 
         # 🔥 STEP 5: mark purchase
-        user.hasPurchased = True
+        user.hasPurchased = 1
 
         purchase = Purchase(
             user_id=user.id,
@@ -557,11 +590,43 @@ def verify_payment():
         db.rollback()
         return {"error": str(e)},500
     
+@app.route("/api/my-products")
+def my_products():
+
+    token = flask.globals.request.headers.get(
+        "Authorization"
+    )
+
+    db = SessionLocal()
+
+    user = db.query(User).filter(
+        User.token == token
+    ).first()
+
+    if not user:
+        return {"error":"Unauthorized"},401
+
+    products = []
+
+    if user.hasPurchased:
+
+        products.append({
+
+            "name":
+            "Career Starter Kit",
+
+            "pdf":
+            "https://edurefertech.com/pdfs/career-starter-kit.pdf"
+
+        })
+
+    return products
+
 # Withdraw via UPI
 @app.route("/api/reward-request", methods=["POST"])
 def withdraw():
-    data = flask.request.json
-    token = flask.request.headers.get("Authorization")
+    data = flask.flask.globals.request.json
+    token = flask.flask.globals.request.headers.get("Authorization")
 
     db = SessionLocal()
 

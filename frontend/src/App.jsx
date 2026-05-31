@@ -15,6 +15,7 @@ import Terms from "./pages/Terms"
 import Privacy from "./pages/Privacy"
 import Refund from "./pages/Refund"
 import Contact from "./pages/Contact"
+import MyProducts from "./pages/MyProducts"
 
 function App() {
 
@@ -33,6 +34,11 @@ return (
     <Route
       path="/dashboard"
       element={<Dashboard />}
+    />
+
+    <Route
+      path="/my-products"
+      element={<MyProducts />}
     />
 
     <Route

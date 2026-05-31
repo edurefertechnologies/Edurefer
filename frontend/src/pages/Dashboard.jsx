@@ -10,7 +10,7 @@ import {
 import DashboardNavbar
   from "../components/DashboardNavbar"
 
-import Products 
+import Products
   from "../components/Products"
 
 import Footer
@@ -104,7 +104,7 @@ export default function Dashboard() {
                 localStorage.getItem("edurefer_token")
             }
           }
-        ) 
+        )
 
         const data =
           await response.json()
@@ -513,8 +513,8 @@ export default function Dashboard() {
         </section>
 
         <div className="product-card fade-up">
-        {/* DASHBOARD Products */}
-        <Products mode="dashboard"/>
+          {/* DASHBOARD Products */}
+          <Products mode="dashboard" />
 
         </div>
 
@@ -645,16 +645,39 @@ export default function Dashboard() {
                 </div>
 
                 <h3 className="
-                  text-2xl
-                  font-bold
+                      text-xl
+                      md:text-2xl
 
-                  text-slate-900
+                      font-bold
 
-                  mb-3
-                ">
+                      text-slate-900
+
+                      mb-2
+                    ">
                   {item.title}
                 </h3>
 
+                <p className="
+                    text-slate-500
+
+                    text-sm
+                    md:text-base
+
+                    leading-relaxed
+                  ">
+                  {
+                    item.title === "My Products"
+                      ? "Access purchased products"
+
+                      : item.title === "Refer & Earn"
+                        ? "Invite friends and earn rewards"
+
+                        : item.title === "Wallet"
+                          ? "Check your reward balance"
+
+                          : "View cart items"
+                  }
+                </p>
               </button>
 
             ))}
