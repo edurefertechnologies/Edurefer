@@ -5,13 +5,15 @@ import {
 
 import {
   useNavigate,
+  useLocation,
+  Link,
 } from "react-router-dom"
 
 import DashboardNavbar
-from "../components/DashboardNavbar"
+  from "../components/DashboardNavbar"
 
 import Footer
-from "../components/Footer"
+  from "../components/Footer"
 
 export default function Refer() {
 
@@ -109,8 +111,7 @@ export default function Refer() {
   // =========================
 
   const referralLink =
-
-`${window.location.origin}/register?ref=${username}`
+    `${window.location.origin}/#/register?ref=${username}`
 
   // =========================
   // COPY LINK
@@ -135,7 +136,7 @@ export default function Refer() {
 
     const message =
 
-`🚀 Join EduRefer & Earn Money!
+      `🚀 Join EduRefer & Earn Money!
 
 Use my referral link:
 ${referralLink}`

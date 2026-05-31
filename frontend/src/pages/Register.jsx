@@ -40,11 +40,39 @@ export default function Register() {
   useEffect(() => {
 
     window.scrollTo({
-
       top: 0,
       behavior: "smooth",
-
     })
+
+    const hash =
+      window.location.hash
+
+    if (hash.includes("?")) {
+
+      const queryString =
+        hash.split("?")[1]
+
+      const params =
+        new URLSearchParams(
+          queryString
+        )
+
+      const ref =
+        params.get("ref")
+
+      if (ref) {
+
+        localStorage.setItem(
+          "referrer",
+          ref
+        )
+
+        console.log(
+          "Referral Found:",
+          ref
+        )
+      }
+    }
 
   }, [])
 
@@ -123,7 +151,7 @@ export default function Register() {
             headers: {
               "Content-Type": "application/json"
             },
-            
+
             body: JSON.stringify({
               username,
               email,
