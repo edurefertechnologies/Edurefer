@@ -17,7 +17,6 @@ export default function DashboardNavbar({
   const navClass = (path) =>
 
     `
-
     relative
 
     text-sm
@@ -117,15 +116,11 @@ export default function DashboardNavbar({
               h-12
               md:h-16
 
-              zoom-125
-
               w-auto
 
               hover:scale-105
 
               transition
-
-              object-contain
             "
           />
 

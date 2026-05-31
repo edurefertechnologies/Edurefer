@@ -192,9 +192,7 @@ export default function MyProducts() {
 
                     transition
                   "
-
                 >
-
                   Download PDF
 
                 </Link>

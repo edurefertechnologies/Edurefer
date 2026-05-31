@@ -773,3 +773,28 @@ def serve_react(path):
 
 if __name__ == "__main__":
     app.run()
+
+
+@app.route("/debug-users")
+def debug_users():
+
+    db = SessionLocal()
+
+    users = db.query(User).all()
+
+    data = []
+
+    for u in users:
+
+        data.append({
+
+            "id": u.id,
+            "username": u.username,
+            "referred_by": u.referred_by,
+            "balance": u.balance,
+            "referrals": u.referrals,
+            "hasPurchased": u.hasPurchased
+
+        })
+
+    return data
