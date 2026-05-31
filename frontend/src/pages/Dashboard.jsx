@@ -578,7 +578,7 @@ export default function Dashboard() {
 
                 icon: "📦",
 
-                path: "/products",
+                path: "/myproducts",
 
                 color:
                   "bg-yellow-100 text-yellow-600",

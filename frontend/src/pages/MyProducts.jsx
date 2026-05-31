@@ -101,7 +101,7 @@ export default function MyProducts() {
                 </p>
 
                 <Link
-                  to="/dashboard/products"
+                  to="/dashboard#products"
                   className="
                     inline-block
                     mt-6

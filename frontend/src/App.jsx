@@ -37,7 +37,7 @@ return (
     />
 
     <Route
-      path="/my-products"
+      path="/myproducts"
       element={<MyProducts />}
     />
 
