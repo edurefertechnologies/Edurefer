@@ -89,19 +89,13 @@ export default function Login() {
         if (response.ok) {
 
           localStorage.setItem(
-
             "edurefer_token",
-
             data.token
-
           )
 
           localStorage.setItem(
-
             "username",
-
-            username
-
+            data.username
           )
 
           alert(

@@ -122,13 +122,15 @@ export default function Dashboard() {
 
         })
 
-        setUsername(
+        const storedUsername =
+          localStorage.getItem("username")
 
-          localStorage.getItem(
-            "username"
-          ) || "User"
-
+        console.log(
+          "Stored Username =",
+          storedUsername
         )
+
+        setUsername(storedUsername)
 
       } catch (err) {
 
@@ -237,6 +239,11 @@ export default function Dashboard() {
       `${name} added to cart 🛒`
     )
   }
+
+  cconsole.log(
+    "Dashboard State Username =",
+    username
+  )
 
   return (
 

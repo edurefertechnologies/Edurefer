@@ -330,10 +330,13 @@ def payout():
 # Login
 @app.route("/api/login", methods=["POST"])
 def login():
-    data = flask.flask.globals.request.json
+
+    data = flask.request.get_json()
+
     db = SessionLocal()
 
     try:
+
         username = data["username"].strip().lower()
         password = data["password"]
 
@@ -342,24 +345,47 @@ def login():
         ).first()
 
         if not user:
-            return {"error":"Invalid username or password"},401
+            return {
+                "error":
+                "Invalid username or password"
+            }, 401
 
         if not check_password_hash(
             user.password,
             password
         ):
-            return {"error":"Invalid username or password"},401
+            return {
+                "error":
+                "Invalid username or password"
+            }, 401
 
         return {
-            "token": user.token,
-            "balance": user.balance
+
+            "token":
+            user.token,
+
+            "balance":
+            user.balance,
+
+            "username":
+            user.username
+
         }
 
     except Exception as e:
-        print("Login Error:", e)
-        return {"error":"Server error"},500
+
+        print(
+            "Login Error:",
+            str(e)
+        )
+
+        return {
+            "error":
+            "Server error"
+        }, 500
 
     finally:
+
         db.close()
 
 
@@ -625,7 +651,7 @@ def my_products():
 # Withdraw via UPI
 @app.route("/api/reward-request", methods=["POST"])
 def withdraw():
-    data = flask.flask.globals.request.json
+    data = flask.request.get_json()
     token = flask.flask.globals.request.headers.get("Authorization")
 
     db = SessionLocal()

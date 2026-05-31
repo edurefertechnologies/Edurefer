@@ -59,6 +59,8 @@ export default function DashboardNavbar({
 
   }
 
+  console.log("Navbar Username =", username)
+
   return (
 
     <header
