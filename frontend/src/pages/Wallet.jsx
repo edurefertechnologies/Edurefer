@@ -80,18 +80,6 @@ export default function Wallet() {
 
     })
 
-    // AUTO REFRESH
-
-    const interval =
-      setInterval(() => {
-
-        loadWallet()
-
-      }, 5000)
-
-    return () =>
-      clearInterval(interval)
-
   }, [navigate])
 
   // =========================
@@ -105,7 +93,7 @@ export default function Wallet() {
 
         const response =
           await fetch(
-            "/api/me",
+            `${import.meta.env.VITE_API_URL}"/api/me"`,
             {
 
               headers: {
@@ -189,7 +177,7 @@ export default function Wallet() {
 
         const response =
           await fetch(
-            "/api/reward-request",
+            `${import.meta.env.VITE_API_URL}"/api/reward-request"`,
             {
 
               method: "POST",
