@@ -110,7 +110,7 @@ export default function Contact() {
                     Email
                   </p>
                   <p className="text-slate-400">
-                    edurefertechnologies@gmail.com
+                    solutions@edurefertech.com
                   </p>
                 </div>
               </div>
