@@ -74,127 +74,117 @@ export default function Products({
 
   const buy = (product) => {
 
+    // HOME PAGE
     if (mode === "home") {
 
-      navigate("/register")
+      if (product.id <= 3) {
+        navigate("/register")
+      }
 
       return
     }
 
-  // =========================
-  // DASHBOARD PAGE
-  // =========================
+    // DASHBOARD PAGE
+    if (product.id !== 1) {
 
-  const cart =
-    JSON.parse(
-      localStorage.getItem(
-        "edurefer_cart"
+      alert("Coming Soon 🚀")
+      return
+
+    }
+
+    const cart =
+      JSON.parse(
+        localStorage.getItem("edurefer_cart")
+      ) || []
+
+    const existing =
+      cart.find(
+        item => item.id === product.id
       )
-    ) || []
 
-  const existing =
-    cart.find(
-      item =>
-        item.id === product.id
+    if (existing) {
+
+      existing.quantity += 1
+
+    } else {
+
+      cart.push({
+
+        id: product.id,
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+
+      })
+
+    }
+
+    localStorage.setItem(
+      "edurefer_cart",
+      JSON.stringify(cart)
     )
 
-  if (existing) {
+    alert(`${product.title} added to cart ✅`)
 
-    existing.quantity += 1
-
-  } else {
-
-    cart.push({
-
-      id: product.id,
-
-      title:
-        product.title,
-
-      description:
-        product.description,
-
-      price:
-        product.price,
-
-      image:
-        product.image,
-
-      quantity: 1,
-
-    })
-
+    navigate("/cart")
   }
 
-  localStorage.setItem(
+  return (
 
-    "edurefer_cart",
-
-    JSON.stringify(cart)
-
-  )
-
-  alert(
-    `${product.title} added to cart ✅`
-  )
-
-  navigate("/cart")
-}
-
-return (
-
-  <section
-    id="products"
-    className="
+    <section
+      id="products"
+      className="
         py-20
       "
-  >
+    >
 
-    {/* TITLE */}
+      {/* TITLE */}
 
-    <div className="
+      <div className="
         text-center
         mb-14
       ">
 
-      <h2 className="
+        <h2 className="
           text-4xl
           md:text-5xl
           font-bold
           text-slate-900
           mb-4
         ">
-        Our Products
-      </h2>
+          Our Products
+        </h2>
 
-      <p className="
+        <p className="
           text-slate-500
           text-lg
           max-w-2xl
           mx-auto
         ">
-        Practical career resources
-        and digital kits specially
-        designed for students and
-        freshers.
-      </p>
+          Practical career resources
+          and digital kits specially
+          designed for students and
+          freshers.
+        </p>
 
-    </div>
+      </div>
 
-    {/* PRODUCTS */}
+      {/* PRODUCTS */}
 
-    <div className="
+      <div className="
         grid
         sm:grid-cols-2
         lg:grid-cols-3
         gap-8
       ">
 
-      {products.map((product) => (
+        {products.map((product) => (
 
-        <div
-          key={product.id}
-          className={`
+          <div
+            key={product.id}
+            className={`
               bg-white
               rounded-[28px]
               p-6
@@ -208,24 +198,24 @@ return (
               overflow-hidden
 
               ${product.disabled
-              ? "opacity-70"
-              : ""
-            }
+                ? "opacity-70"
+                : ""
+              }
             `}
-        >
+          >
 
-          {/* IMAGE */}
+            {/* IMAGE */}
 
-          <div className="
+            <div className="
               overflow-hidden
               rounded-2xl
               mb-6
             ">
 
-            <img
-              src={product.image}
-              alt={product.title}
-              className="
+              <img
+                src={product.image}
+                alt={product.title}
+                className="
                   w-full
                   aspect-video
                   object-cover
@@ -233,48 +223,49 @@ return (
                   transition
                   duration-500
                 "
-            />
+              />
 
-          </div>
+            </div>
 
-          {/* INFO */}
+            {/* INFO */}
 
-          <h3 className="
+            <h3 className="
               text-3xl
               font-bold
               text-slate-900
               mb-3
             ">
-            {product.title}
-          </h3>
+              {product.title}
+            </h3>
 
-          <p className="
+            <p className="
               text-slate-500
               text-lg
               mb-5
             ">
-            {product.description}
-          </p>
+              {product.description}
+            </p>
 
-          <h2 className="
+            <h2 className="
               text-4xl
               font-bold
               text-blue-600
               mb-8
             ">
-            ₹{product.price}
-          </h2>
+              ₹{product.price}
+            </h2>
 
-          {/* BUTTON */}
+            {/* BUTTON */}
 
-          <button
-            onClick={() =>
-              buy(product)
-            }
-            disabled={
-              product.disabled
-            }
-            className={`
+            <button
+              onClick={() =>
+                buy(product)
+              }
+              disabled={
+                product.disabled
+                (mode !== "home" && product.id !== 1)
+              }
+              className={`
                 w-full
                 py-4
                 rounded-2xl
@@ -284,26 +275,26 @@ return (
                 duration-300
 
                 ${product.disabled
-                ? "bg-slate-300 text-slate-600 cursor-not-allowed"
-                : "bg-gradient-to-r from-emerald-500 to-blue-600 text-white hover:scale-105 shadow-lg"
-              }
+                  ? "bg-slate-300 text-slate-600 cursor-not-allowed"
+                  : "bg-gradient-to-r from-emerald-500 to-blue-600 text-white hover:scale-105 shadow-lg"
+                }
               `}
-          >
+            >
 
-            {
-              mode === "home"
-                ? "Get Started"
-                : "Add To Cart"
-            }
+              {
+                mode === "home"
+                  ? "Get Started"
+                  : "Add To Cart"
+              }
 
-          </button>
+            </button>
 
-        </div>
+          </div>
 
-      ))}
+        ))}
 
-    </div>
+      </div>
 
-  </section>
-)
+    </section>
+  )
 }
