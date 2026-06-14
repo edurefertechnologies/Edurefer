@@ -25,7 +25,7 @@ const products = [
     description: "Switch to high salary job",
     price: 500,
     image: careerSwitch,
-    disabled: true,
+    disabled: false,
   },
 
   {
@@ -34,7 +34,7 @@ const products = [
     description: "Get your first job",
     price: 500,
     image: freshersKit,
-    disabled: true,
+    disabled: false,
   },
 
   {
