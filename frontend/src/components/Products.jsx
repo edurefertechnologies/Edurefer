@@ -258,11 +258,9 @@ export default function Products({
             {/* BUTTON */}
 
             <button
-              onClick={() =>
-                buy(product)
-              }
+              onClick={() => buy(product)}
               disabled={
-                product.disabled
+                product.disabled ||
                 (mode !== "home" && product.id !== 1)
               }
               className={`
@@ -274,12 +272,13 @@ export default function Products({
                 transition-all
                 duration-300
 
-                ${product.disabled
+                ${product.disabled ||
+                  (mode !== "home" && product.id !== 1)
                   ? "bg-slate-300 text-slate-600 cursor-not-allowed"
                   : "bg-gradient-to-r from-emerald-500 to-blue-600 text-white hover:scale-105 shadow-lg"
                 }
               `}
-            >
+              >
 
               {
                 mode === "home"
