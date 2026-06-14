@@ -1,6 +1,9 @@
 import careerStarter from "../assets/Images/career_start_kit.webp"
 import careerSwitch from "../assets/Images/career_switch_kit.webp"
 import freshersKit from "../assets/Images/freshers_kit.webp"
+import aiCareerKit from "../assets/Images/ai_career_kit.webp"
+import freelancingKit from "../assets/Images/freelancing_starter_kit.webp"
+import entrepreneurshipKit from "../assets/Images/entrepreneurship_kit.webp"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { useState } from "react"
@@ -31,6 +34,33 @@ const products = [
     description: "Get your first job",
     price: 500,
     image: freshersKit,
+    disabled: true,
+  },
+
+  {
+    id: 4,
+    title: "AI Career Kit",
+    description: "Get started with AI",
+    price: 500,
+    image: aiCareerKit,
+    disabled: true,
+  },
+
+  {
+    id: 5,
+    title: "Freelancing Starter Kit",
+    description: "Start your freelancing career",
+    price: 700,
+    image: freelancingKit,
+    disabled: true,
+  },
+
+  {
+    id: 6,
+    title: "Entrepreneurship Kit",
+    description: "Start your own business",
+    price: 900,
+    image: entrepreneurshipKit,
     disabled: true,
   },
 
