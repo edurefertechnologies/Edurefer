@@ -1,4 +1,4 @@
-import aboutImage from "../assets/Images/about.png"
+import aboutImage from "../assets/Images/about.webp"
 import { Link } from "react-router-dom"
 
 export default function About() {

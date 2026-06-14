@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate }
   from "react-router-dom"
 
-import logo from "../assets/Images/Edurefer Logo.png"
+import logo from "../assets/Images/Edurefer Logo.webp"
 
 export default function DashboardNavbar({
 
