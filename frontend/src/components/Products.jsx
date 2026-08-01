@@ -83,6 +83,8 @@ export default function Products({
 
       return
     }
+    
+    
 
     // DASHBOARD PAGE
     if (product.id !== 1) {
